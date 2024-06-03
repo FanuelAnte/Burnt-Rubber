@@ -18,7 +18,6 @@ func _physics_process(delta):
 	else:
 		counter_rect.hide()
 		
-	
 	blue_score.text = str(Globals.score["blue"]).pad_zeros(2)
 	red_score.text = str(Globals.score["red"]).pad_zeros(2)
 	

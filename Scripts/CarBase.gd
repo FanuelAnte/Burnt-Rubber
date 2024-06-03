@@ -52,7 +52,14 @@ func _physics_process(delta):
 	apply_friction()
 	calculate_steering(delta)
 	velocity += acceleration * car_details.acceleration_factor * delta
-	velocity = move_and_slide(velocity)
+#	velocity = move_and_slide(velocity)
+	
+	var collision = move_and_collide(velocity * delta)
+	if collision:
+		velocity = velocity.bounce(collision.normal)
+		velocity.x *= 1.5
+		velocity.y *= 1.5
+	
 	
 func apply_friction():
 	if velocity.length() < 1:

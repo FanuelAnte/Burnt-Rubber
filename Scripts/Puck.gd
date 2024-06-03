@@ -21,13 +21,14 @@ func reset_everything():
 	self.linear_velocity = Vector2.ZERO
 	yield(get_tree().create_timer(1), "timeout")
 	
-	Globals.counter_time = 3
-	Globals.is_counting_down = true
 
 	var hud =  get_tree().get_nodes_in_group("hud")[0]
 	hud.play_transition()
 	
 	yield(get_tree().create_timer(0.4), "timeout")
+	
+	Globals.counter_time = 3
+	Globals.is_counting_down = true
 	
 	self.linear_velocity = Vector2.ZERO
 	self.position = Vector2.ZERO

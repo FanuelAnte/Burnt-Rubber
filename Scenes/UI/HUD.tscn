@@ -53,17 +53,6 @@ anchor_bottom = 1.0
 theme = SubResource( 2 )
 script = ExtResource( 3 )
 
-[node name="TransitionTexture" type="TextureRect" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -528.0
-margin_top = -120.0
-margin_right = -128.0
-margin_bottom = 120.0
-texture = ExtResource( 4 )
-
 [node name="HudBorder" type="Sprite" parent="."]
 position = Vector2( 128, 120 )
 texture = ExtResource( 1 )
@@ -154,6 +143,17 @@ custom_constants/shadow_offset_y = 1
 custom_fonts/font = SubResource( 3 )
 text = "0"
 align = 1
+
+[node name="TransitionTexture" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -528.0
+margin_top = -120.0
+margin_right = -128.0
+margin_bottom = 120.0
+texture = ExtResource( 4 )
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
