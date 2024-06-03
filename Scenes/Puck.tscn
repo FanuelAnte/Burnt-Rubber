@@ -14,7 +14,7 @@ radius = 11.0
 radius = 8.0
 
 [node name="Puck" type="RigidBody2D" groups=["puck"]]
-mass = 2.0
+mass = 5.0
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 6

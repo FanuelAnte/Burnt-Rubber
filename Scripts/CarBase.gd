@@ -5,12 +5,14 @@ onready var chase_timer = $"%ChaseTimer"
 onready var collider = $"%Collider"
 onready var sprite = $"%Sprite"
 onready var camera = $"%Camera"
+onready var bounce_stall_timer = $"%BounceStallTimer"
 export var is_player = false
 
 var current_slip_speed
 
 export (Resource) var car_details
 var can_chase_ball = true
+var has_stalled = false
 
 var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
@@ -55,11 +57,15 @@ func _physics_process(delta):
 #	velocity = move_and_slide(velocity)
 	
 	var collision = move_and_collide(velocity * delta)
-	if collision:
-		velocity = velocity.bounce(collision.normal)
-		velocity.x *= 1.5
-		velocity.y *= 1.5
 	
+	if collision:
+		if bounce_stall_timer.is_stopped():
+			bounce_stall_timer.start(stepify(rand_range(0.2, 0.6), 0.5))
+			has_stalled = true
+		
+		velocity = velocity.bounce(collision.normal)
+		velocity.x *= 0.8
+		velocity.y *= 0.8
 	
 func apply_friction():
 	if velocity.length() < 1:
@@ -74,7 +80,7 @@ func get_input():
 	current_slip_speed = car_details.slip_speed
 	var turn = 0
 	var puck = get_tree().get_nodes_in_group("puck")[0].global_position
-	if !Globals.is_counting_down:
+	if !Globals.is_counting_down and !has_stalled:
 		if is_player:
 			if Input.is_action_pressed("steer_right"):
 				
@@ -127,11 +133,14 @@ func calculate_steering(delta):
 	if d < 0:
 		velocity = -new_heading * min(velocity.length(), car_details.max_speed_reverse)
 	rotation = new_heading.angle()
-		
-
+	
 func reset_position():
+	self.velocity = Vector2.ZERO
 	self.position = starting_position
 	self.rotation_degrees = starting_rotation
-
+	
 func _on_Timer_timeout():
 	can_chase_ball = true
+	
+func _on_BounceStallTimer_timeout():
+	has_stalled = false

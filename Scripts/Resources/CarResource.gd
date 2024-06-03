@@ -5,7 +5,7 @@ class_name car_resource
 export (String, "Charger", "GTI", "250GT", "Stratos", "Stingray", "2002Tii") var car_name
 export (int) var wheel_base = 25
 export (int) var steering_angle = 30
-export (int) var engine_power = 200
+export (int) var engine_power = 250
 export (int) var acceleration_factor = 3
 export (float) var friction = -0.9
 export (float) var drag = -0.002

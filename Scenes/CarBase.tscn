@@ -5,8 +5,8 @@
 [ext_resource path="res://Scenes/Indicator.tscn" type="PackedScene" id=3]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 6.00002
-height = 9.99996
+radius = 6.00004
+height = 11.9999
 
 [node name="CarBase" type="KinematicBody2D" groups=["cars"]]
 script = ExtResource( 2 )
@@ -17,7 +17,6 @@ rotation = 1.5708
 texture = ExtResource( 1 )
 hframes = 6
 vframes = 2
-frame = 5
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true
@@ -28,6 +27,7 @@ limit_bottom = 576
 
 [node name="Collider" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
+position = Vector2( 0, 3.09944e-06 )
 rotation = 1.57079
 shape = SubResource( 1 )
 
@@ -39,4 +39,10 @@ unique_name_in_owner = true
 wait_time = 2.0
 one_shot = true
 
+[node name="BounceStallTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="BounceStallTimer" to="." method="_on_BounceStallTimer_timeout"]

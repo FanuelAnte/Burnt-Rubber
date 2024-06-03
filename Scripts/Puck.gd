@@ -21,7 +21,6 @@ func reset_everything():
 	self.linear_velocity = Vector2.ZERO
 	yield(get_tree().create_timer(1), "timeout")
 	
-
 	var hud =  get_tree().get_nodes_in_group("hud")[0]
 	hud.play_transition()
 	
