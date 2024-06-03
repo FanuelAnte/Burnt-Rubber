@@ -4,8 +4,9 @@
 [ext_resource path="res://Scripts/Puck.gd" type="Script" id=2]
 
 [sub_resource type="PhysicsMaterial" id=1]
+friction = 0.2
 rough = true
-bounce = 0.5
+bounce = 0.8
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 11.0
@@ -14,12 +15,12 @@ radius = 11.0
 radius = 8.0
 
 [node name="Puck" type="RigidBody2D" groups=["puck"]]
-mass = 5.0
+mode = 2
+mass = 0.2
 physics_material_override = SubResource( 1 )
 gravity_scale = 0.0
 contacts_reported = 6
 contact_monitor = true
-angular_damp = 100.0
 script = ExtResource( 2 )
 
 [node name="Puck" type="Sprite" parent="."]

@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends RigidBody2D
 
 
 onready var chase_timer = $"%ChaseTimer"
@@ -8,20 +8,21 @@ onready var camera = $"%Camera"
 onready var bounce_stall_timer = $"%BounceStallTimer"
 export var is_player = false
 
-var current_slip_speed
-
 export (Resource) var car_details
 var can_chase_ball = true
 var has_stalled = false
 
-var acceleration = Vector2.ZERO
 var velocity = Vector2.ZERO
-var steer_angle
+var turn = 0
 
 var starting_position = Vector2.ZERO
 var starting_rotation = Vector2.ZERO
 
 export (String, "red", "blue") var team_color
+
+func _integrate_forces(state):
+	if state.linear_velocity.length() > car_details.max_speed:
+		state.linear_velocity = state.linear_velocity.normalized() * car_details.max_speed
 
 func _ready():
 	if is_player:
@@ -48,94 +49,66 @@ func _ready():
 	
 	collider.shape = capsule
 	
-func _physics_process(delta):
-	acceleration = Vector2.ZERO
+func _process(delta):
 	get_input()
-	apply_friction()
-	calculate_steering(delta)
-	velocity += acceleration * car_details.acceleration_factor * delta
-#	velocity = move_and_slide(velocity)
 	
-	var collision = move_and_collide(velocity * delta)
+func _physics_process(delta):
+	applied_force = velocity
+	var norm_speed = stepify(range_lerp(linear_velocity.length(), 0, car_details.max_speed, 0.5, 1), 0.5)
 	
-	if collision:
-		if bounce_stall_timer.is_stopped():
-			bounce_stall_timer.start(stepify(rand_range(0.2, 0.6), 0.5))
-			has_stalled = true
-		
-		velocity = velocity.bounce(collision.normal)
-		velocity.x *= 0.8
-		velocity.y *= 0.8
-	
-func apply_friction():
-	if velocity.length() < 1:
-		velocity = Vector2.ZERO
-	var friction_force = velocity * car_details.friction
-	var drag_force = velocity * velocity.length() * car_details.drag
-	if velocity.length() < 70:
-		friction_force *= 3
-	acceleration += drag_force + friction_force
+	if linear_velocity.length() > car_details.min_steer_speed:
+		applied_torque = turn * car_details.steer_intensity * norm_speed
+	else:
+		angular_velocity = 0
 	
 func get_input():
-	current_slip_speed = car_details.slip_speed
-	var turn = 0
+	turn = 0
 	var puck = get_tree().get_nodes_in_group("puck")[0].global_position
-	if !Globals.is_counting_down and !has_stalled:
+	if !Globals.is_counting_down:
 		if is_player:
 			if Input.is_action_pressed("steer_right"):
-				
 				turn += 1
 			if Input.is_action_pressed("steer_left"):
 				turn -= 1
 				
 			if Input.is_action_pressed("accelerate"):
-				acceleration = transform.x * car_details.engine_power
-			if Input.is_action_pressed("brake"):
-				acceleration = transform.x * car_details.braking
+				velocity = transform.x * car_details.engine_power
+				linear_damp = 1
+				
+			elif Input.is_action_pressed("brake"):
+				velocity = transform.x * car_details.braking * -1
+				linear_damp = 1
+				
+			else:
+				velocity = Vector2()
+				linear_damp = 3
 			
-			if Input.is_action_pressed("drift"):
-				current_slip_speed = car_details.slip_speed/4
-		
 		else:
 			var direction = (Vector2(0, 0) - self.global_position)
-
+			
 			if (puck - self.global_position).length() > 32:
 				if can_chase_ball:
 					direction = (puck - self.global_position)
 			else:
 				can_chase_ball = false
 				chase_timer.start(stepify(rand_range(1, 2), 0.05))
-			
-			var angle = rad2deg(self.transform.x.angle_to(direction))
-			
-			if abs(angle) <= 170:
-				turn += sign(angle) * 1
-				acceleration = transform.x * car_details.engine_power
-			
-			elif abs(angle) > 170:
-				turn += sign(angle) * 1
-				acceleration = transform.x * car_details.braking
 				
-	steer_angle = turn * deg2rad(car_details.steering_angle)
-		
-func calculate_steering(delta):
-	var rear_wheel = position - transform.x * car_details.wheel_base / 2.0
-	var front_wheel = position + transform.x * car_details.wheel_base / 2.0
-	rear_wheel += velocity * delta
-	front_wheel += velocity.rotated(steer_angle) * delta
-	var new_heading = (front_wheel - rear_wheel).normalized()
-	var traction = car_details.traction_slow
-	if velocity.length() > current_slip_speed:
-		traction = car_details.traction_fast
-	var d = new_heading.dot(velocity.normalized())
-	if d > 0:
-		velocity = velocity.linear_interpolate(new_heading * velocity.length(), traction)
-	if d < 0:
-		velocity = -new_heading * min(velocity.length(), car_details.max_speed_reverse)
-	rotation = new_heading.angle()
-	
+			var angle = rad2deg(self.transform.x.angle_to(direction))
+				
+			if abs(angle) <= 140:
+				turn += sign(angle) * 1
+				velocity = transform.x * car_details.engine_power
+				linear_damp = 1
+				
+			elif abs(angle) > 140:
+				turn += sign(angle) * 1
+				velocity = transform.x * car_details.braking * -1
+				linear_damp = 1
+			
+			
 func reset_position():
-	self.velocity = Vector2.ZERO
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0
 	self.position = starting_position
 	self.rotation_degrees = starting_rotation
 	

@@ -5,9 +5,8 @@ func _ready():
 	pass
 	
 func _integrate_forces(state):
-	rotation = 0
 	if state.linear_velocity.length() > 500:
-		state.linear_velocity=state.linear_velocity.normalized() * 500
+		state.linear_velocity = state.linear_velocity.normalized() * 500
 
 func _physics_process(delta):
 	#TODO: Reset everything if the ball is out of bounds.
