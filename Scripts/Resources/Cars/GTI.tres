@@ -1,0 +1,20 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://Scripts/Resources/CarResource.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+car_name = "GTI"
+wheel_base = 25
+steering_angle = 30
+engine_power = 200
+acceleration_factor = 3
+friction = -0.9
+drag = -0.002
+braking = -200
+max_speed_reverse = 200
+slip_speed = 200
+traction_fast = 0.05
+traction_slow = 0.8
+collider_height = 6
+car_sprite = 1
