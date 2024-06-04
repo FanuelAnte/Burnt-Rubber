@@ -10,7 +10,11 @@ export (String, "Charger", "GTI", "250GT", "Stratos", "Stingray", "2002Tii") var
 ##
 
 export (int) var engine_power = 500
+export (int) var boost_engine_power = 5000
+
 export (int) var max_speed = 250
+export (int) var boost_max_speed = 500
+
 export (int) var min_steer_speed = 20
 export (int) var base_steer_intensity = 500
 export (int) var drift_steer_intensity = 1500

@@ -15,6 +15,9 @@ var field_extents = {
 	"y" : 576
 }
 
+#make this multiplayer friendly
+var player_speed = 0
+
 var time_left = "05:00.000"
 
 var starting_positions = {

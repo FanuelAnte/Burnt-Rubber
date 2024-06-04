@@ -59,4 +59,15 @@ position = Vector2( -6, 4 )
 
 [node name="Trail" parent="Node2D/Position2D2" instance=ExtResource( 4 )]
 
+[node name="BoostTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="BoostCooldown" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="BoostTimer" to="." method="_on_BoostTimer_timeout"]
+[connection signal="timeout" from="BoostCooldown" to="." method="_on_BoostCooldown_timeout"]

@@ -5,16 +5,22 @@ onready var chase_timer = $"%ChaseTimer"
 onready var collider = $"%Collider"
 onready var sprite = $"%Sprite"
 onready var camera = $"%Camera"
-export var is_player = false
+onready var boost_timer = $"%BoostTimer"
+onready var boost_cooldown = $"%BoostCooldown"
 
+export var is_player = false
 export (Resource) var car_details
 var can_chase_ball = true
 var has_stalled = false
+
+var can_boost = true
 
 var velocity = Vector2.ZERO
 var turn = 0
 
 var steer_intensity = 0
+var max_speed = 0
+var engine_power = 0
 
 var starting_position = Vector2.ZERO
 var starting_rotation = Vector2.ZERO
@@ -22,11 +28,13 @@ var starting_rotation = Vector2.ZERO
 export (String, "red", "blue") var team_color
 
 func _integrate_forces(state):
-	if state.linear_velocity.length() > car_details.max_speed:
-		state.linear_velocity = state.linear_velocity.normalized() * car_details.max_speed
+	if state.linear_velocity.length() > max_speed:
+		state.linear_velocity = state.linear_velocity.normalized() * max_speed
 
 func _ready():
 	steer_intensity = car_details.base_steer_intensity
+	max_speed = car_details.max_speed
+	engine_power = car_details.engine_power
 	
 	if is_player:
 		camera.current = true
@@ -56,9 +64,11 @@ func _process(delta):
 	get_input()
 	
 func _physics_process(delta):
+	#TODO: Draw a straight line between you and the ball when you get within 32 to 128 pixels of the puck to show the boost trajectory and effect.
+	
 	if !Globals.is_counting_down:
 		applied_force = velocity
-		var norm_speed = stepify(range_lerp(linear_velocity.length(), 0, car_details.max_speed, 0.5, 1), 0.5)
+		var norm_speed = stepify(range_lerp(linear_velocity.length(), 0, max_speed, 0.5, 1), 0.5)
 		
 		if linear_velocity.length() > car_details.min_steer_speed:
 			applied_torque = turn * steer_intensity * norm_speed
@@ -67,19 +77,22 @@ func _physics_process(delta):
 	else:
 		linear_velocity = Vector2.ZERO
 		angular_velocity = 0
+		
+	if is_player:
+		Globals.player_speed = stepify(linear_velocity.length(), 1)
 	
 func get_input():
 	turn = 0
 	var puck = get_tree().get_nodes_in_group("puck")[0].global_position
 	if !Globals.is_counting_down:
 		if is_player:
-			if Input.is_action_pressed("steer_right"):
+			if Input.is_action_pressed("steer_right") and boost_timer.is_stopped():
 				turn += 1
-			if Input.is_action_pressed("steer_left"):
+			if Input.is_action_pressed("steer_left") and boost_timer.is_stopped():
 				turn -= 1
 				
 			if Input.is_action_pressed("accelerate"):
-				velocity = transform.x * car_details.engine_power
+				velocity = transform.x * engine_power
 				linear_damp = 1
 				
 			elif Input.is_action_pressed("brake"):
@@ -94,6 +107,11 @@ func get_input():
 				steer_intensity = car_details.drift_steer_intensity
 			else:
 				steer_intensity = car_details.base_steer_intensity
+				
+			if Input.is_action_just_pressed("boost") and can_boost:
+				boost_timer.start()
+				max_speed = car_details.boost_max_speed
+				engine_power = car_details.boost_engine_power
 			
 		else:
 			var direction = (Vector2(0, 0) - self.global_position)
@@ -126,3 +144,12 @@ func reset_position():
 	
 func _on_Timer_timeout():
 	can_chase_ball = true
+	
+func _on_BoostTimer_timeout():
+	can_boost = false
+	boost_cooldown.start()
+	max_speed = car_details.max_speed
+	engine_power = car_details.engine_power
+	
+func _on_BoostCooldown_timeout():
+	can_boost = true
