@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Trail.gd" type="Script" id=1]
+
+[sub_resource type="Curve" id=4]
+_data = [ Vector2( 0.111538, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[node name="Trail" type="Line2D" groups=["tire_tracks"]]
+z_index = -1
+width = 1.0
+width_curve = SubResource( 4 )
+default_color = Color( 0.407843, 0.498039, 0.533333, 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+max_trail_length = 50

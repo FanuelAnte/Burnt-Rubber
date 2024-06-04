@@ -1,20 +1,10 @@
 extends RigidBody2D
 
 
-func _ready():
-	pass
-	
 func _integrate_forces(state):
-	if state.linear_velocity.length() > 500:
-		state.linear_velocity = state.linear_velocity.normalized() * 500
-
-func _physics_process(delta):
-	#TODO: Reset everything if the ball is out of bounds.
-	if self.position.x > Globals.field_extents["x"] or self.position.x < (Globals.field_extents["x"] * -1):
-		reset_everything()
-	if self.position.x > Globals.field_extents["y"] or self.position.x < (Globals.field_extents["y"] * -1):
-		reset_everything()
-
+	if state.linear_velocity.length() > 400:
+		state.linear_velocity = state.linear_velocity.normalized() * 400
+		
 func reset_everything():
 	#TODO: Make this less shitty
 	self.linear_velocity = Vector2.ZERO
@@ -30,6 +20,9 @@ func reset_everything():
 	
 	self.linear_velocity = Vector2.ZERO
 	self.position = Vector2.ZERO
+	
+	for mark in get_tree().get_nodes_in_group("tire_tracks"):
+		mark.clear_points()
 	
 	for car in get_tree().get_nodes_in_group("cars"):
 		car.reset_position()

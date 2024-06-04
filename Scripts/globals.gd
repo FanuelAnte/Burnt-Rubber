@@ -18,7 +18,7 @@ var field_extents = {
 var time_left = "05:00.000"
 
 var starting_positions = {
-#	"one" : Vector2(0, 488),
 	0 : Vector2(-128, 488),
 	1 : Vector2(128, 488)
+#	2 : Vector2(0, 488)
 }

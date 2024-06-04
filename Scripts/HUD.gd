@@ -1,6 +1,6 @@
 extends Control
 
-
+onready var transition_texture = $"%TransitionTexture"
 onready var blue_score = $"%BlueScore"
 onready var red_score = $"%RedScore"
 onready var time = $"%Time"
@@ -10,7 +10,7 @@ onready var anim_player = $"%AnimPlayer"
 
 func _ready():
 #	play_transition()
-	pass
+	transition_texture.rect_position = Vector2(-400, 0)
 
 func _physics_process(delta):
 	if Globals.is_counting_down:

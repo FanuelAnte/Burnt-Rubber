@@ -5,10 +5,11 @@
 [resource]
 script = ExtResource( 1 )
 car_name = "2002Tii"
-engine_power = 400
-max_speed = 200
+engine_power = 500
+max_speed = 250
 min_steer_speed = 20
-steer_intensity = 1500
+base_steer_intensity = 500
+drift_steer_intensity = 1500
 braking = 200
 collider_height = 10
 car_sprite = 5

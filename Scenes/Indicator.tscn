@@ -8,6 +8,7 @@ position = Vector2( 0, 128 )
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
+unique_name_in_owner = true
 position = Vector2( 24, 0 )
 rotation = 1.57079
 texture = ExtResource( 1 )

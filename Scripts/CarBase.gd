@@ -5,7 +5,6 @@ onready var chase_timer = $"%ChaseTimer"
 onready var collider = $"%Collider"
 onready var sprite = $"%Sprite"
 onready var camera = $"%Camera"
-onready var bounce_stall_timer = $"%BounceStallTimer"
 export var is_player = false
 
 export (Resource) var car_details
@@ -14,6 +13,8 @@ var has_stalled = false
 
 var velocity = Vector2.ZERO
 var turn = 0
+
+var steer_intensity = 0
 
 var starting_position = Vector2.ZERO
 var starting_rotation = Vector2.ZERO
@@ -25,6 +26,8 @@ func _integrate_forces(state):
 		state.linear_velocity = state.linear_velocity.normalized() * car_details.max_speed
 
 func _ready():
+	steer_intensity = car_details.base_steer_intensity
+	
 	if is_player:
 		camera.current = true
 	else:
@@ -53,12 +56,16 @@ func _process(delta):
 	get_input()
 	
 func _physics_process(delta):
-	applied_force = velocity
-	var norm_speed = stepify(range_lerp(linear_velocity.length(), 0, car_details.max_speed, 0.5, 1), 0.5)
-	
-	if linear_velocity.length() > car_details.min_steer_speed:
-		applied_torque = turn * car_details.steer_intensity * norm_speed
+	if !Globals.is_counting_down:
+		applied_force = velocity
+		var norm_speed = stepify(range_lerp(linear_velocity.length(), 0, car_details.max_speed, 0.5, 1), 0.5)
+		
+		if linear_velocity.length() > car_details.min_steer_speed:
+			applied_torque = turn * steer_intensity * norm_speed
+		else:
+			angular_velocity = 0
 	else:
+		linear_velocity = Vector2.ZERO
 		angular_velocity = 0
 	
 func get_input():
@@ -83,6 +90,11 @@ func get_input():
 				velocity = Vector2()
 				linear_damp = 3
 			
+			if Input.is_action_pressed("drift"):
+				steer_intensity = car_details.drift_steer_intensity
+			else:
+				steer_intensity = car_details.base_steer_intensity
+			
 		else:
 			var direction = (Vector2(0, 0) - self.global_position)
 			
@@ -105,15 +117,12 @@ func get_input():
 				velocity = transform.x * car_details.braking * -1
 				linear_damp = 1
 			
-			
 func reset_position():
-	linear_velocity = Vector2.ZERO
-	angular_velocity = 0
 	self.position = starting_position
 	self.rotation_degrees = starting_rotation
+	linear_velocity = Vector2.ZERO
+	angular_velocity = 0
+	
 	
 func _on_Timer_timeout():
 	can_chase_ball = true
-	
-func _on_BounceStallTimer_timeout():
-	has_stalled = false
