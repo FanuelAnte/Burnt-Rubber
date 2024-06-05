@@ -7,7 +7,8 @@ onready var time = $"%Time"
 onready var counter_time = $"%CounterTime"
 onready var counter_rect = $"%CounterRect"
 onready var anim_player = $"%AnimPlayer"
-onready var speed = $"%Speed"
+onready var player_speed = $"%PlayerSpeed"
+onready var puck_speed = $"%PuckSpeed"
 
 func _ready():
 #	play_transition()
@@ -23,7 +24,8 @@ func _physics_process(delta):
 	red_score.text = str(Globals.score["red"]).pad_zeros(2)
 	
 	time.text = Globals.time_left
-	speed.text = str(Globals.player_speed) + " UPH" 
+	player_speed.text = str(Globals.player_speed) + " UPH" 
+	puck_speed.text = str(Globals.puck_speed) + " UPH" 
 	
 	counter_time.text = Globals.counter_time_left
 

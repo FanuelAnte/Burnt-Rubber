@@ -5,6 +5,9 @@ func _integrate_forces(state):
 	if state.linear_velocity.length() > 400:
 		state.linear_velocity = state.linear_velocity.normalized() * 400
 		
+func _physics_process(delta):
+	Globals.puck_speed = stepify(linear_velocity.length(), 1)
+	
 func reset_everything():
 	#TODO: Make this less shitty
 	self.linear_velocity = Vector2.ZERO
