@@ -21,7 +21,7 @@ var player_speed = 0
 var time_left = "05:00.000"
 
 var starting_positions = {
-	0 : Vector2(-128, 488),
-	1 : Vector2(128, 488)
+	0 : Vector2(-128, 480),
+	1 : Vector2(128, 480)
 #	2 : Vector2(0, 488)
 }

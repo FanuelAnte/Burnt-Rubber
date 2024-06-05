@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Exports/HUDBorder.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/PIXELFONT225.TTF" type="DynamicFontData" id=2]
 [ext_resource path="res://Scripts/HUD.gd" type="Script" id=3]
 [ext_resource path="res://Assets/Exports/ScreenTransition.png" type="Texture" id=4]
 [ext_resource path="res://Themes/PrimaryTheme.tres" type="Theme" id=5]
+[ext_resource path="res://Scenes/UI/MiniMap.tscn" type="PackedScene" id=6]
 
 [sub_resource type="DynamicFont" id=3]
 size = 12
@@ -49,6 +50,12 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_vertical_guides_": [ 288.0 ]
 }
+
+[node name="MiniMap" parent="." instance=ExtResource( 6 )]
+margin_left = 223.0
+margin_top = 2.0
+margin_right = 255.0
+margin_bottom = 66.0
 
 [node name="HudBorder" type="Sprite" parent="."]
 position = Vector2( 128, 120 )
@@ -160,8 +167,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -400.0
-margin_bottom = 240.0
+margin_left = -528.0
+margin_top = -120.0
+margin_right = -128.0
+margin_bottom = 120.0
 texture = ExtResource( 4 )
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]

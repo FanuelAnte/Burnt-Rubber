@@ -141,7 +141,6 @@ func reset_position():
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0
 	
-	
 func _on_Timer_timeout():
 	can_chase_ball = true
 	

@@ -23,7 +23,7 @@ func _physics_process(delta):
 	red_score.text = str(Globals.score["red"]).pad_zeros(2)
 	
 	time.text = Globals.time_left
-	speed.text = str(Globals.player_speed)
+	speed.text = str(Globals.player_speed) + " UPH" 
 	
 	counter_time.text = Globals.counter_time_left
 

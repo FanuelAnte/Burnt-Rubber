@@ -22,13 +22,14 @@ __meta__ = {
 [node name="BlueTeam" type="Node2D" parent="."]
 
 [node name="CarBase4" parent="BlueTeam" instance=ExtResource( 1 )]
-position = Vector2( 0, -488 )
+position = Vector2( 128, -480 )
 rotation = 1.57079
+is_player = true
 car_details = ExtResource( 9 )
 team_color = "blue"
 
 [node name="CarBase5" parent="BlueTeam" instance=ExtResource( 1 )]
-position = Vector2( -128, -488 )
+position = Vector2( -128, -480 )
 rotation = 1.57079
 car_details = ExtResource( 10 )
 team_color = "blue"
@@ -38,7 +39,6 @@ team_color = "blue"
 [node name="CarBase" parent="RedTeam" instance=ExtResource( 1 )]
 position = Vector2( 0, 488 )
 rotation = -1.57079
-is_player = true
 car_details = ExtResource( 7 )
 team_color = "red"
 
