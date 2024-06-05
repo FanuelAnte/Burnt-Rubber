@@ -7,6 +7,7 @@ onready var sprite = $"%Sprite"
 onready var camera = $"%Camera"
 onready var boost_timer = $"%BoostTimer"
 onready var boost_cooldown = $"%BoostCooldown"
+onready var proximity_line = $"%ProximityLine"
 
 export var is_player = false
 export (Resource) var car_details
@@ -22,6 +23,8 @@ var steer_intensity = 0
 var max_speed = 0
 var engine_power = 0
 
+var puck
+
 var starting_position = Vector2.ZERO
 var starting_rotation = Vector2.ZERO
 
@@ -32,6 +35,8 @@ func _integrate_forces(state):
 		state.linear_velocity = state.linear_velocity.normalized() * max_speed
 
 func _ready():
+	puck = get_tree().get_nodes_in_group("puck")[0].global_position
+	
 	steer_intensity = car_details.base_steer_intensity
 	max_speed = car_details.max_speed
 	engine_power = car_details.engine_power
@@ -61,7 +66,15 @@ func _ready():
 	collider.shape = capsule
 	
 func _process(delta):
+	puck = get_tree().get_nodes_in_group("puck")[0].global_position
 	get_input()
+	
+	if is_player and stepify(global_position.distance_to(puck), 1) < 128:
+		proximity_line.show()
+		update_proximity_line()
+	else:
+		proximity_line.hide()
+	
 	
 func _physics_process(delta):
 	#TODO: Draw a straight line between you and the ball when you get within 32 to 128 pixels of the puck to show the boost trajectory and effect.
@@ -83,12 +96,11 @@ func _physics_process(delta):
 	
 func get_input():
 	turn = 0
-	var puck = get_tree().get_nodes_in_group("puck")[0].global_position
 	if !Globals.is_counting_down:
 		if is_player:
-			if Input.is_action_pressed("steer_right") and boost_timer.is_stopped():
+			if Input.is_action_pressed("steer_right"):# and boost_timer.is_stopped():
 				turn += 1
-			if Input.is_action_pressed("steer_left") and boost_timer.is_stopped():
+			if Input.is_action_pressed("steer_left"):# and boost_timer.is_stopped():
 				turn -= 1
 				
 			if Input.is_action_pressed("accelerate"):
@@ -134,7 +146,12 @@ func get_input():
 				turn += sign(angle) * 1
 				velocity = transform.x * car_details.braking * -1
 				linear_damp = 1
-			
+	
+func update_proximity_line():
+	proximity_line.set_as_toplevel(true)
+	proximity_line.points[0] = global_position
+	proximity_line.points[1] = puck
+	
 func reset_position():
 	self.position = starting_position
 	self.rotation_degrees = starting_rotation

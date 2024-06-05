@@ -1,51 +1,76 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Themes/PrimaryTheme.tres" type="Theme" id=1]
-[ext_resource path="res://Assets/Exports/GodotLogo.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Exports/GameLogo.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/MainMenu.gd" type="Script" id=4]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 1 )
+script = ExtResource( 4 )
 
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Logo" type="TextureRect" parent="."]
+margin_top = 16.0
+margin_right = 256.0
+margin_bottom = 112.0
+texture = ExtResource( 3 )
+
+[node name="MainMenu" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 16.0
-margin_top = 16.0
-margin_right = -16.0
-margin_bottom = -16.0
+margin_top = 128.0
+margin_bottom = -48.0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 224.0
-margin_bottom = 208.0
-custom_constants/separation = 8
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+margin_right = 256.0
+margin_bottom = 64.0
+custom_constants/separation = 12
 alignment = 1
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 74.0
-margin_right = 224.0
-margin_bottom = 80.0
-text = "Made With"
-align = 1
-valign = 1
+[node name="StartBtn" type="Button" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 2.0
+margin_right = 256.0
+margin_bottom = 8.0
+text = "Start"
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer"]
-margin_top = 88.0
-margin_right = 224.0
-margin_bottom = 120.0
-texture = ExtResource( 2 )
-stretch_mode = 4
+[node name="OptionsBtn" type="Button" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 20.0
+margin_right = 256.0
+margin_bottom = 26.0
+text = "Options"
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_top = 128.0
-margin_right = 224.0
-margin_bottom = 134.0
-text = "By Fanuel Anteneh"
-align = 1
-valign = 1
+[node name="MultiplayerBtn" type="Button" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 38.0
+margin_right = 256.0
+margin_bottom = 44.0
+text = "Multiplayer"
+
+[node name="ExitBtn" type="Button" parent="MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 56.0
+margin_right = 256.0
+margin_bottom = 62.0
+text = "Exit"
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -61.0
+margin_top = -14.0
+margin_right = 61.0
+margin_bottom = -8.0
+text = "2024 - Fanuel Anteneh"
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/StartBtn" to="." method="_on_StartBtn_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/ExitBtn" to="." method="_on_ExitBtn_pressed"]
