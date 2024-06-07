@@ -15,6 +15,7 @@ var can_chase_ball = true
 var has_stalled = false
 
 var can_boost = true
+var is_steering = true
 
 var velocity = Vector2.ZERO
 var turn = 0
@@ -72,6 +73,15 @@ func _process(delta):
 	if is_player and stepify(global_position.distance_to(puck), 1) < 128:
 		proximity_line.show()
 		update_proximity_line()
+		
+		#TODO: Auto-aim if in close proximity.
+		if !is_steering:
+			var direction = (puck - self.global_position)
+			var angle = rad2deg(self.transform.x.angle_to(direction))
+			
+			turn += sign(angle) * 2
+			linear_damp = 1
+			
 	else:
 		proximity_line.hide()
 	
@@ -96,12 +106,16 @@ func _physics_process(delta):
 	
 func get_input():
 	turn = 0
+	is_steering = false
+	
 	if !Globals.is_counting_down:
 		if is_player:
-			if Input.is_action_pressed("steer_right"):# and boost_timer.is_stopped():
+			if Input.is_action_pressed("steer_right") and boost_timer.is_stopped():
+				is_steering = true
 				turn += 1
-			if Input.is_action_pressed("steer_left"):# and boost_timer.is_stopped():
+			if Input.is_action_pressed("steer_left") and boost_timer.is_stopped():
 				turn -= 1
+				is_steering = true
 				
 			if Input.is_action_pressed("accelerate"):
 				velocity = transform.x * engine_power

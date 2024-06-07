@@ -2,8 +2,8 @@ extends RigidBody2D
 
 
 func _integrate_forces(state):
-	if state.linear_velocity.length() > 400:
-		state.linear_velocity = state.linear_velocity.normalized() * 400
+	if state.linear_velocity.length() > Globals.max_puck_speed:
+		state.linear_velocity = state.linear_velocity.normalized() * Globals.max_puck_speed
 		
 func _physics_process(delta):
 	Globals.puck_speed = stepify(linear_velocity.length(), 1)

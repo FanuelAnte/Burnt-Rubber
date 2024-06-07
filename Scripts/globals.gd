@@ -18,6 +18,7 @@ var field_extents = {
 #make this multiplayer friendly
 var player_speed = 0
 var puck_speed = 0
+var max_puck_speed = 350
 
 var time_left = "05:00.000"
 

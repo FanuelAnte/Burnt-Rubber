@@ -7,7 +7,7 @@
 
 [sub_resource type="PhysicsMaterial" id=2]
 friction = 0.0
-bounce = 0.2
+bounce = 0.5
 
 [sub_resource type="Curve" id=3]
 _data = [ Vector2( 0, 0.598159 ), 0.0, 0.0, 0, 0, Vector2( 0.498774, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.647239 ), 0.0, 0.0, 0, 0 ]
@@ -76,7 +76,7 @@ position = Vector2( -6, 4 )
 
 [node name="BoostTimer" type="Timer" parent="."]
 unique_name_in_owner = true
-wait_time = 0.2
+wait_time = 0.3
 one_shot = true
 
 [node name="BoostCooldown" type="Timer" parent="."]
