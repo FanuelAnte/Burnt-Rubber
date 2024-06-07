@@ -83,6 +83,7 @@ one_shot = true
 unique_name_in_owner = true
 one_shot = true
 
+[connection signal="body_entered" from="." to="." method="_on_CarBase_body_entered"]
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="BoostTimer" to="." method="_on_BoostTimer_timeout"]
 [connection signal="timeout" from="BoostCooldown" to="." method="_on_BoostCooldown_timeout"]

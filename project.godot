@@ -37,7 +37,7 @@ window/size/height=240
 window/size/test_width=512
 window/size/test_height=480
 window/dpi/allow_hidpi=true
-window/vsync/use_vsync=false
+window/vsync/vsync_via_compositor=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"
 

@@ -20,6 +20,9 @@ var player_speed = 0
 var puck_speed = 0
 var max_puck_speed = 350
 
+var shake_power_factor = 3
+var shake_length_factor = 1
+
 var time_left = "05:00.000"
 
 var starting_positions = {

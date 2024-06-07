@@ -166,6 +166,13 @@ func update_proximity_line():
 	proximity_line.points[0] = global_position
 	proximity_line.points[1] = puck
 	
+func move_camera(amount):
+	camera.offset = Vector2(rand_range(-amount.x, amount.x), rand_range(-amount.y, amount.y))
+	
+func camera_shake(length, power):
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_method(self, "move_camera", Vector2(power, power), Vector2(0, 0), length)
+	
 func reset_position():
 	self.position = starting_position
 	self.rotation_degrees = starting_rotation
@@ -183,3 +190,13 @@ func _on_BoostTimer_timeout():
 	
 func _on_BoostCooldown_timeout():
 	can_boost = true
+
+func _on_CarBase_body_entered(body):
+	var shake_factor = 0
+	
+	if (body.is_in_group("puck") or body.is_in_group("cars")) and linear_velocity.length() < body.linear_velocity.length():
+		shake_factor = range_lerp(body.linear_velocity.length(), 0, max_speed, 0.2, 1)
+	else:
+		shake_factor =range_lerp(linear_velocity.length(), 0, max_speed, 0.2, 1)
+	
+	camera_shake(Globals.shake_length_factor * shake_factor, Globals.shake_power_factor * shake_factor)
