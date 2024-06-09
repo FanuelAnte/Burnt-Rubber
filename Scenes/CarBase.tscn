@@ -10,7 +10,7 @@ friction = 0.0
 bounce = 0.5
 
 [sub_resource type="Curve" id=3]
-_data = [ Vector2( 0, 0.598159 ), 0.0, 0.0, 0, 0, Vector2( 0.498774, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.647239 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0.782209 ), 0.0, 0.0, 0, 0, Vector2( 0.498774, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.843558 ), 0.0, 0.0, 0, 0 ]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.00004
@@ -32,7 +32,7 @@ z_index = -2
 points = PoolVector2Array( 0, 0, 0, 0 )
 width = 1.0
 width_curve = SubResource( 3 )
-default_color = Color( 0.223529, 0.266667, 0.317647, 1 )
+default_color = Color( 0, 0, 0, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 unique_name_in_owner = true
@@ -57,11 +57,6 @@ shape = SubResource( 1 )
 [node name="Indicator" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 0 )
 
-[node name="ChaseTimer" type="Timer" parent="."]
-unique_name_in_owner = true
-wait_time = 2.0
-one_shot = true
-
 [node name="Node2D" type="Node2D" parent="."]
 
 [node name="Position2D" type="Position2D" parent="Node2D"]
@@ -74,6 +69,11 @@ position = Vector2( -6, 4 )
 
 [node name="Trail" parent="Node2D/Position2D2" instance=ExtResource( 4 )]
 
+[node name="ChaseTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
 [node name="BoostTimer" type="Timer" parent="."]
 unique_name_in_owner = true
 wait_time = 0.3
@@ -84,6 +84,7 @@ unique_name_in_owner = true
 one_shot = true
 
 [connection signal="body_entered" from="." to="." method="_on_CarBase_body_entered"]
+[connection signal="zoom_camera" from="." to="." method="_on_CarBase_zoom_camera"]
 [connection signal="timeout" from="ChaseTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="BoostTimer" to="." method="_on_BoostTimer_timeout"]
 [connection signal="timeout" from="BoostCooldown" to="." method="_on_BoostCooldown_timeout"]

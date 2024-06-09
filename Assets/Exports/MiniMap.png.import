@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/MiniMapGrid.png-b038ba5bfc856949249981121c1d5108.stex"
+path="res://.import/MiniMap.png-9afd4ea23fa7c5e82b45f6b14a265c66.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Exports/MiniMapGrid.png"
-dest_files=[ "res://.import/MiniMapGrid.png-b038ba5bfc856949249981121c1d5108.stex" ]
+source_file="res://Assets/Exports/MiniMap.png"
+dest_files=[ "res://.import/MiniMap.png-9afd4ea23fa7c5e82b45f6b14a265c66.stex" ]
 
 [params]
 

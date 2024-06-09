@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Assets/Exports/HUDBorder.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/PIXELFONT225.TTF" type="DynamicFontData" id=2]
@@ -6,10 +6,26 @@
 [ext_resource path="res://Assets/Exports/ScreenTransition.png" type="Texture" id=4]
 [ext_resource path="res://Themes/PrimaryTheme.tres" type="Theme" id=5]
 [ext_resource path="res://Scenes/UI/MiniMap.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Menus/PauseMenu.tscn" type="PackedScene" id=7]
 
 [sub_resource type="DynamicFont" id=3]
 size = 12
 font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=6]
+resource_name = "LoadTransition"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TransitionTexture:rect_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -112, 0 ), Vector2( -112, 0 ), Vector2( 256, 0 ) ]
+}
 
 [sub_resource type="Animation" id=4]
 length = 0.001
@@ -43,6 +59,7 @@ tracks/0/keys = {
 }
 
 [node name="HUD" type="Control"]
+pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 5 )
@@ -72,8 +89,7 @@ margin_left = 9.0
 margin_top = 5.0
 margin_right = 21.0
 margin_bottom = 11.0
-custom_colors/font_color = Color( 0.258824, 0.576471, 0.792157, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.156863, 0.4, 0.603922, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
 text = "00"
@@ -83,8 +99,6 @@ margin_left = 25.0
 margin_top = 5.0
 margin_right = 30.0
 margin_bottom = 11.0
-custom_colors/font_color = Color( 0.65098, 0.768627, 0.74902, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
 text = "-"
@@ -95,8 +109,7 @@ margin_left = 34.0
 margin_top = 5.0
 margin_right = 46.0
 margin_bottom = 11.0
-custom_colors/font_color = Color( 0.784314, 0.215686, 0.215686, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_colors/font_color = Color( 0.807843, 0.101961, 0.101961, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
 text = "00"
@@ -111,7 +124,6 @@ margin_left = -48.0
 margin_top = -11.0
 margin_right = -22.0
 margin_bottom = -5.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
 text = "00:00:000"
@@ -125,7 +137,6 @@ margin_left = 2.0
 margin_top = -11.0
 margin_right = 48.0
 margin_bottom = -5.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
 text = "00000"
@@ -139,7 +150,6 @@ margin_left = 176.0
 margin_top = -235.0
 margin_right = 222.0
 margin_bottom = -229.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
 text = "00000"
@@ -155,7 +165,7 @@ margin_left = -128.0
 margin_top = -11.0
 margin_right = 128.0
 margin_bottom = 11.0
-color = Color( 0.65098, 0.768627, 0.74902, 1 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="CounterTime" type="Label" parent="CounterRect"]
 unique_name_in_owner = true
@@ -163,14 +173,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -6.0
-margin_top = -6.0
-margin_right = 6.0
-margin_bottom = 6.0
-custom_colors/font_color = Color( 0.407843, 0.498039, 0.533333, 1 )
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 1
+margin_left = -5.0
+margin_top = -5.0
+margin_right = 7.0
+margin_bottom = 7.0
 custom_fonts/font = SubResource( 3 )
 text = "0"
 align = 1
@@ -181,11 +187,18 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -400.0
-margin_bottom = 240.0
+margin_left = -528.0
+margin_top = -120.0
+margin_right = -127.999
+margin_bottom = 120.0
 texture = ExtResource( 4 )
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
+anims/LoadTransition = SubResource( 6 )
 anims/RESET = SubResource( 4 )
 anims/ScreenTransition = SubResource( 5 )
+
+[node name="PauseMenu" parent="." instance=ExtResource( 7 )]
+unique_name_in_owner = true
+visible = false

@@ -1,5 +1,7 @@
 extends Control
 
+
+onready var pause_menu = $"%PauseMenu"
 onready var transition_texture = $"%TransitionTexture"
 onready var blue_score = $"%BlueScore"
 onready var red_score = $"%RedScore"
@@ -11,9 +13,9 @@ onready var player_speed = $"%PlayerSpeed"
 onready var puck_speed = $"%PuckSpeed"
 
 func _ready():
-#	play_transition()
-	transition_texture.rect_position = Vector2(-400, 0)
-
+	transition_texture.rect_position = Vector2(-112, 0)
+	play_load()
+	
 func _physics_process(delta):
 	if Globals.is_counting_down:
 		counter_rect.show()
@@ -28,6 +30,9 @@ func _physics_process(delta):
 	puck_speed.text = str(Globals.puck_speed) + " UPH" 
 	
 	counter_time.text = Globals.counter_time_left
-
+	
 func play_transition():
 	anim_player.play("ScreenTransition")
+
+func play_load():
+	anim_player.play("LoadTransition")

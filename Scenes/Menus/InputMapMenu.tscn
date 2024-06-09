@@ -29,6 +29,8 @@ custom_constants/separation = 16
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 224.0
 margin_bottom = 6.0
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
 text = "INPUT mAP"
 align = 1
 valign = 1
@@ -47,6 +49,8 @@ margin_bottom = 6.0
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
 margin_right = 30.0
 margin_bottom = 6.0
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
 text = "Power"
 
 [node name="Control" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
@@ -59,7 +63,9 @@ size_flags_horizontal = 3
 margin_left = 178.0
 margin_right = 184.0
 margin_bottom = 6.0
-custom_colors/font_color = Color( 0.831373, 0.658824, 0.392157, 1 )
+custom_colors/font_color = Color( 0.929412, 0.352941, 0.243137, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
 text = "Z"
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer"]

@@ -6,7 +6,7 @@
 script = ExtResource( 1 )
 car_name = "GTI"
 engine_power = 500
-boost_engine_power = 2000
+boost_engine_power = 3000
 max_speed = 250
 boost_max_speed = 400
 min_steer_speed = 20

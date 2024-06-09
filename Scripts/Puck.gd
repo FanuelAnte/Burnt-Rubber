@@ -11,6 +11,7 @@ func _physics_process(delta):
 func reset_everything():
 	#TODO: Make this less shitty
 	self.linear_velocity = Vector2.ZERO
+	self.call_deferred("set_mode", MODE_STATIC)
 	yield(get_tree().create_timer(1), "timeout")
 	
 	var hud =  get_tree().get_nodes_in_group("hud")[0]
@@ -30,6 +31,8 @@ func reset_everything():
 	for car in get_tree().get_nodes_in_group("cars"):
 		car.reset_position()
 	
+	self.call_deferred("set_mode", MODE_CHARACTER)
+	
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("goal"):
 		
@@ -38,5 +41,6 @@ func _on_Area2D_area_entered(area):
 		
 		elif area.team_color == "blue":
 			Globals.score["red"] += 1
-	
+			
 	reset_everything()
+	

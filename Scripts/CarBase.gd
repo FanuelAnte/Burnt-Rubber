@@ -1,6 +1,11 @@
 extends RigidBody2D
 
 
+signal zoom_camera(zoom_value)
+
+var has_zoomed_out = false
+var has_zoomed_in = true
+
 onready var chase_timer = $"%ChaseTimer"
 onready var collider = $"%Collider"
 onready var sprite = $"%Sprite"
@@ -84,8 +89,26 @@ func _process(delta):
 			
 	else:
 		proximity_line.hide()
+		
+	#Dynamic Zoom: Make it an option in settings.
+	if is_player:
+		if clamp(linear_velocity.length(), 0, car_details.max_speed) > (car_details.max_speed)/2:
+			if !has_zoomed_out:
+				emit_signal("zoom_camera", Globals.max_camera_zoom)
+				has_zoomed_out = true
+				has_zoomed_in = false
+		else:
+			if !has_zoomed_in:
+				emit_signal("zoom_camera", Vector2(1, 1))
+				has_zoomed_in = true
+				has_zoomed_out = false
+			
+#		var camera_scale = stepify(range_lerp(clamp(linear_velocity.length(), 0, car_details.max_speed), 50, car_details.max_speed, 1, 1.5), 0.001)
+#		var clamped_camera_scale = Vector2(1, 1) * clamp(camera_scale, 1, 1.5)
 	
-	
+#		var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
+#		tween.tween_property(camera, "zoom", clamped_camera_scale, 0.1)
+		
 func _physics_process(delta):
 	#TODO: Draw a straight line between you and the ball when you get within 32 to 128 pixels of the puck to show the boost trajectory and effect.
 	
@@ -197,6 +220,10 @@ func _on_CarBase_body_entered(body):
 	if (body.is_in_group("puck") or body.is_in_group("cars")) and linear_velocity.length() < body.linear_velocity.length():
 		shake_factor = range_lerp(body.linear_velocity.length(), 0, max_speed, 0.2, 1)
 	else:
-		shake_factor =range_lerp(linear_velocity.length(), 0, max_speed, 0.2, 1)
+		shake_factor = range_lerp(linear_velocity.length(), 0, max_speed, 0.5, 1)
 	
 	camera_shake(Globals.shake_length_factor * shake_factor, Globals.shake_power_factor * shake_factor)
+	
+func _on_CarBase_zoom_camera(zoom_value):
+	var tween = create_tween().set_trans(Tween.TRANS_LINEAR)#.set_ease(Tween.EASE_OUT_IN)
+	tween.tween_property(camera, "zoom", zoom_value, 1)

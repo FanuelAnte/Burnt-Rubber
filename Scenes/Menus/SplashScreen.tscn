@@ -45,7 +45,7 @@ script = ExtResource( 3 )
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0, 0, 0, 1 )
+color = Color( 0.223529, 0.266667, 0.317647, 1 )
 
 [node name="IntroSplash" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -61,6 +61,9 @@ alignment = 1
 margin_top = 74.0
 margin_right = 256.0
 margin_bottom = 80.0
+custom_colors/font_color_shadow = Color( 0.184314, 0.117647, 0.270588, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
 text = "Made With"
 align = 1
 valign = 1
@@ -76,6 +79,9 @@ stretch_mode = 4
 margin_top = 160.0
 margin_right = 256.0
 margin_bottom = 166.0
+custom_colors/font_color_shadow = Color( 0.184314, 0.117647, 0.270588, 1 )
+custom_constants/shadow_offset_x = 0
+custom_constants/shadow_offset_y = 1
 text = "By Fanuel Anteneh"
 align = 1
 valign = 1

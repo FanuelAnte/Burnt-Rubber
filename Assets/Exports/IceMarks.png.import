@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/HUDBorder-export.png-c5d4b3aff6927db47b232d4cf80ebe60.stex"
+path="res://.import/IceMarks.png-4fda7e84f920b6cd63277166df985884.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Exports/HUDBorder-export.png"
-dest_files=[ "res://.import/HUDBorder-export.png-c5d4b3aff6927db47b232d4cf80ebe60.stex" ]
+source_file="res://Assets/Exports/IceMarks.png"
+dest_files=[ "res://.import/IceMarks.png-4fda7e84f920b6cd63277166df985884.stex" ]
 
 [params]
 

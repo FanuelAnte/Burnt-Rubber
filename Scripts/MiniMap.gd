@@ -2,7 +2,9 @@ extends MarginContainer
 
 
 onready var red_team_icon = $"%RedTeamIcon"
+onready var red_team_player_icon = $"%RedTeamPlayerIcon"
 onready var blue_team_icon = $"%BlueTeamIcon"
+onready var blue_team_player_icon = $"%BlueTeamPlayerIcon"
 onready var puck_icon = $"%PuckIcon"
 
 onready var grid = $"%Grid"
@@ -12,7 +14,9 @@ export var zoom = 10
 
 onready var icons = {
 	"red_team": red_team_icon, 
+	"red_team_player": red_team_player_icon,
 	"blue_team": blue_team_icon, 
+	"blue_team_player": blue_team_player_icon, 
 	"puck": puck_icon
 }
 
@@ -31,12 +35,22 @@ func update_objects_list():
 		#TODO: Add 2 more icons for red ad blue to signify the player.
 		if object.is_in_group("cars"):
 			if object.team_color == "red":
-				var new_marker = icons["red_team"].duplicate()
+				var new_marker
+				if object.is_player:
+					new_marker = icons["red_team_player"].duplicate()
+				else:
+					new_marker = icons["red_team"].duplicate()
+					
 				icons_controller.add_child(new_marker)
 				new_marker.show()
 				markers[object] = new_marker
 			elif object.team_color == "blue":
-				var new_marker = icons["blue_team"].duplicate()
+				var new_marker
+				if object.is_player:
+					new_marker = icons["blue_team_player"].duplicate()
+				else:
+					new_marker = icons["blue_team"].duplicate()
+					
 				icons_controller.add_child(new_marker)
 				new_marker.show()
 				markers[object] = new_marker
