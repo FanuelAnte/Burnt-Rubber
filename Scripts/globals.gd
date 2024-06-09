@@ -24,13 +24,20 @@ var player_speed = 0
 var puck_speed = 0
 var max_puck_speed = 350
 
-var max_camera_zoom = Vector2(2, 2)
+var max_camera_zoom = Vector2(1, 1) * 2
 var shake_power_factor = 2
 var shake_length_factor = 1
-
 
 var starting_positions = {
 	0 : Vector2(-128, 480),
 	1 : Vector2(128, 480),
 	2 : Vector2(0, 480)
 }
+
+func reset_essentials():
+	Globals.time_limit = 300
+	Globals.counter_time = 3
+	Globals.is_counting_down = true
+	
+	Globals.score["red"] = 0
+	Globals.score["blue"] = 0

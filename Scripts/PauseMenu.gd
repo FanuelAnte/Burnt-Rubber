@@ -32,15 +32,9 @@ func resume():
 	
 func _on_ResumeBtn_pressed():
 	resume()
-
-func _on_ExitBtn_pressed():
+	
+func _on_EndMatchBtn_pressed():
 	resume()
 	get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
 	
-	Globals.time_limit = 300
-	Globals.counter_time = 3
-	Globals.is_counting_down = true
-	
-	Globals.score["red"] = 0
-	Globals.score["blue"] = 0
-	
+	Globals.reset_essentials()

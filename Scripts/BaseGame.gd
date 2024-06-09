@@ -20,9 +20,11 @@ func _process(delta):
 			Globals.time_limit -= delta
 		else:
 			Globals.time_limit = 0
-			pass
 			#TODO: End Game.
-		
+			get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
+			
+			Globals.reset_essentials()
+			
 		var total_seconds = int(Globals.time_limit)
 		var minutes = int((total_seconds % 3600) / 60)
 		var seconds = int(total_seconds % 60)

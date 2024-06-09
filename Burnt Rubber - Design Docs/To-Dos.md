@@ -1,0 +1,27 @@
+# Must-Haves
+- [ ] Endgame events and screen
+	- [ ] Score
+	- [ ] Rematch.
+		- [ ] Remember Current Settings and Show the Match Setup Screen with Current Selection and Settings.
+	- [ ] Main-Menu button
+- [ ] Options Screen
+	- [ ] Audio Options
+	- [ ] Input Map
+	- [ ] Gameplay Options
+		- [ ] Auto Aim
+		- [ ] Zoom
+	- [ ] Accessibility Options
+- [ ] Match setup screen
+	- [ ] Pick team
+	- [ ] Pick Car
+- [ ] SFX and Music
+- [ ] Particle Effects
+- [ ] Controller Support
+# Nice-To-Haves
+- [ ] Intro Cutscene
+- [ ] Title Screen Animation
+- [ ] Split-Screen
+- [ ] Local Multiplayer
+- [ ] Game modifiers and details
+	- [ ] Ball Speed
+	- [ ] Ball Bounce

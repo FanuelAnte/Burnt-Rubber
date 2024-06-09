@@ -84,7 +84,7 @@ func _process(delta):
 			var direction = (puck - self.global_position)
 			var angle = rad2deg(self.transform.x.angle_to(direction))
 			
-			turn += sign(angle) * 2
+			turn += sign(angle) * 3
 			linear_damp = 1
 			
 	else:
@@ -225,5 +225,5 @@ func _on_CarBase_body_entered(body):
 	camera_shake(Globals.shake_length_factor * shake_factor, Globals.shake_power_factor * shake_factor)
 	
 func _on_CarBase_zoom_camera(zoom_value):
-	var tween = create_tween().set_trans(Tween.TRANS_LINEAR)#.set_ease(Tween.EASE_OUT_IN)
-	tween.tween_property(camera, "zoom", zoom_value, 1)
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
+	tween.tween_property(camera, "zoom", zoom_value, 1.5)

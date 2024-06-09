@@ -88,34 +88,42 @@ align = 1
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 56.0
 margin_right = 224.0
-margin_bottom = 106.0
+margin_bottom = 104.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer/CenterContainer"]
-margin_left = 91.0
-margin_right = 133.0
-margin_bottom = 50.0
-custom_constants/separation = 16
+margin_left = 73.0
+margin_right = 150.0
+margin_bottom = 48.0
+custom_constants/separation = 8
 alignment = 1
 
 [node name="ResumeBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2"]
 unique_name_in_owner = true
-margin_right = 42.0
+margin_right = 77.0
 margin_bottom = 6.0
 text = "Resume"
 
+[node name="Restart Btn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2"]
+unique_name_in_owner = true
+margin_top = 14.0
+margin_right = 77.0
+margin_bottom = 20.0
+text = "Restart match"
+
 [node name="OptionsBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2"]
 unique_name_in_owner = true
-margin_top = 22.0
-margin_right = 42.0
-margin_bottom = 28.0
+margin_top = 28.0
+margin_right = 77.0
+margin_bottom = 34.0
 text = "Options"
 
-[node name="ExitBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2"]
+[node name="EndMatchBtn" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2"]
 unique_name_in_owner = true
-margin_top = 44.0
-margin_right = 42.0
-margin_bottom = 50.0
-text = "EXIT"
+margin_top = 42.0
+margin_right = 77.0
+margin_bottom = 48.0
+text = "End Match"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2/ExitBtn" to="." method="_on_ExitBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2/Restart Btn" to="." method="_on_ExitBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2/EndMatchBtn" to="." method="_on_EndMatchBtn_pressed"]
