@@ -9,7 +9,7 @@ func _ready():
 	play_btn.grab_focus()
 
 func _on_PlayBtn_pressed():
-	get_tree().change_scene("res://Scenes/BaseGame.tscn")
+	get_tree().change_scene("res://Scenes/Menus/MatchSetupScreen.tscn")
 	
 func _on_ExitBtn_pressed():
 	get_tree().quit()

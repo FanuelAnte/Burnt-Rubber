@@ -2,7 +2,7 @@ extends Resource
 
 class_name car_resource
 
-export (String, "Charger", "GTI", "250GT", "Stratos", "Stingray", "2002Tii") var car_name
+export (String, "Charger", "GTI", "250 GT", "Stratos", "Stingray", "2002 Tii") var car_name
 
 ##
 #export (int) var wheel_base = 25
@@ -10,7 +10,7 @@ export (String, "Charger", "GTI", "250GT", "Stratos", "Stingray", "2002Tii") var
 ##
 
 export (int) var engine_power = 500
-export (int) var boost_engine_power = 3000
+export (int) var boost_engine_power = 8000
 
 export (int) var max_speed = 250
 export (int) var boost_max_speed = 400

@@ -1,14 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Scenes/CarBase.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Field.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Puck.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/UI/HUD.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scripts/BaseGame.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/Resources/Cars/Stingray.tres" type="Resource" id=6]
-[ext_resource path="res://Scripts/Resources/Cars/2002Tii.tres" type="Resource" id=7]
-[ext_resource path="res://Scripts/Resources/Cars/250GT.tres" type="Resource" id=9]
-[ext_resource path="res://Scripts/Resources/Cars/Stratos.tres" type="Resource" id=10]
 
 [node name="BaseGame" type="Node2D"]
 script = ExtResource( 5 )
@@ -20,33 +15,10 @@ __meta__ = {
 }
 
 [node name="BlueTeam" type="Node2D" parent="."]
-
-[node name="CarBase4" parent="BlueTeam" instance=ExtResource( 1 )]
-position = Vector2( 128, -480 )
-rotation = 1.57079
-is_player = true
-car_details = ExtResource( 7 )
-team_color = "blue"
-
-[node name="CarBase5" parent="BlueTeam" instance=ExtResource( 1 )]
-position = Vector2( -128, -472 )
-rotation = 1.57079
-car_details = ExtResource( 9 )
-team_color = "blue"
+unique_name_in_owner = true
 
 [node name="RedTeam" type="Node2D" parent="."]
-
-[node name="CarBase6" parent="RedTeam" instance=ExtResource( 1 )]
-position = Vector2( 128, 480 )
-rotation = -1.5708
-car_details = ExtResource( 6 )
-team_color = "red"
-
-[node name="CarBase7" parent="RedTeam" instance=ExtResource( 1 )]
-position = Vector2( -128, 480 )
-rotation = -1.5708
-car_details = ExtResource( 10 )
-team_color = "red"
+unique_name_in_owner = true
 
 [node name="Puck" parent="." instance=ExtResource( 3 )]
 

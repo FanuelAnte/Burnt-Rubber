@@ -4,9 +4,9 @@
 
 [resource]
 script = ExtResource( 1 )
-car_name = "250GT"
+car_name = "250 GT"
 engine_power = 500
-boost_engine_power = 3000
+boost_engine_power = 8000
 max_speed = 250
 boost_max_speed = 400
 min_steer_speed = 20

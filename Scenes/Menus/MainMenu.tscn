@@ -35,20 +35,21 @@ alignment = 1
 
 [node name="PlayBtn" type="Button" parent="MainMenu/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 20.0
+margin_top = 27.0
 margin_right = 256.0
-margin_bottom = 26.0
+margin_bottom = 33.0
 text = "Play"
 
 [node name="OptionsBtn" type="Button" parent="MainMenu/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 34.0
+margin_top = 41.0
 margin_right = 256.0
-margin_bottom = 40.0
+margin_bottom = 47.0
 text = "Options"
 
 [node name="MultiplayerBtn" type="Button" parent="MainMenu/VBoxContainer"]
 unique_name_in_owner = true
+visible = false
 margin_top = 48.0
 margin_right = 256.0
 margin_bottom = 54.0
@@ -56,9 +57,9 @@ text = "Multiplayer"
 
 [node name="ExitBtn" type="Button" parent="MainMenu/VBoxContainer"]
 unique_name_in_owner = true
-margin_top = 62.0
+margin_top = 55.0
 margin_right = 256.0
-margin_bottom = 68.0
+margin_bottom = 61.0
 text = "Exit"
 
 [node name="Label" type="Label" parent="."]

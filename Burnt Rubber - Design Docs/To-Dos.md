@@ -1,9 +1,9 @@
 # Must-Haves
 - [ ] Endgame events and screen
-	- [ ] Score
-	- [ ] Rematch.
+	- [x] Score
+	- [ ] Rematch
 		- [ ] Remember Current Settings and Show the Match Setup Screen with Current Selection and Settings.
-	- [ ] Main-Menu button
+	- [x] Main-Menu button
 - [ ] Options Screen
 	- [ ] Audio Options
 	- [ ] Input Map
@@ -11,11 +11,11 @@
 		- [ ] Auto Aim
 		- [ ] Zoom
 	- [ ] Accessibility Options
-- [ ] Match setup screen
-	- [ ] Pick team
-	- [ ] Pick Car
+- [x] Match setup screen
+	- [x] Pick team
+	- [x] Pick Car
 - [ ] SFX and Music
-- [ ] Particle Effects
+- [x] Particle Effects
 - [ ] Controller Support
 # Nice-To-Haves
 - [ ] Intro Cutscene

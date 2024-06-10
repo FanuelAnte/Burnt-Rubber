@@ -66,3 +66,6 @@ func _process(delta):
 		object_position.x = clamp(object_position.x, 1, grid.rect_size.x - 1)
 		object_position.y = clamp(object_position.y, 1, grid.rect_size.y - 1)
 		markers[marker].position = object_position
+
+func _on_ObjectsRefresh_timeout():
+	update_objects_list()

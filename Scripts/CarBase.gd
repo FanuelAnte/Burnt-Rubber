@@ -13,12 +13,16 @@ onready var camera = $"%Camera"
 onready var boost_timer = $"%BoostTimer"
 onready var boost_cooldown = $"%BoostCooldown"
 onready var proximity_line = $"%ProximityLine"
+onready var collision_damp_timer = $"%CollisionDampTimer"
+onready var ice_particles_l = $"%IceParticlesL"
+onready var ice_particles_r = $"%IceParticlesR"
 
 export var is_player = false
 export (Resource) var car_details
 var can_chase_ball = true
 var has_stalled = false
 
+var is_drifting = false
 var can_boost = true
 var is_steering = true
 
@@ -64,6 +68,7 @@ func _ready():
 		starting_rotation = -90
 		
 	self.position = starting_position
+	self.rotation_degrees = starting_rotation
 	
 	var capsule = CapsuleShape2D.new()
 	capsule.set_radius(6)
@@ -84,14 +89,14 @@ func _process(delta):
 			var direction = (puck - self.global_position)
 			var angle = rad2deg(self.transform.x.angle_to(direction))
 			
-			turn += sign(angle) * 3
+			turn += sign(angle) * Globals.auto_aim_speed
 			linear_damp = 1
 			
 	else:
 		proximity_line.hide()
 		
 	#Dynamic Zoom: Make it an option in settings.
-	if is_player:
+	if is_player and Globals.zooming_enabled:
 		if clamp(linear_velocity.length(), 0, car_details.max_speed) > (car_details.max_speed)/2:
 			if !has_zoomed_out:
 				emit_signal("zoom_camera", Globals.max_camera_zoom)
@@ -102,24 +107,26 @@ func _process(delta):
 				emit_signal("zoom_camera", Vector2(1, 1))
 				has_zoomed_in = true
 				has_zoomed_out = false
-			
-#		var camera_scale = stepify(range_lerp(clamp(linear_velocity.length(), 0, car_details.max_speed), 50, car_details.max_speed, 1, 1.5), 0.001)
-#		var clamped_camera_scale = Vector2(1, 1) * clamp(camera_scale, 1, 1.5)
-	
-#		var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT_IN)
-#		tween.tween_property(camera, "zoom", clamped_camera_scale, 0.1)
 		
 func _physics_process(delta):
 	#TODO: Draw a straight line between you and the ball when you get within 32 to 128 pixels of the puck to show the boost trajectory and effect.
-	
 	if !Globals.is_counting_down:
 		applied_force = velocity
 		var norm_speed = stepify(range_lerp(linear_velocity.length(), 0, max_speed, 0.5, 1), 0.5)
 		
 		if linear_velocity.length() > car_details.min_steer_speed:
 			applied_torque = turn * steer_intensity * norm_speed
+			
 		else:
 			angular_velocity = 0
+			
+		if is_drifting or abs(angular_velocity) > 0:
+			ice_particles_l.emitting = true
+			ice_particles_r.emitting = true
+		else:
+			ice_particles_l.emitting = false
+			ice_particles_r.emitting = false
+		
 	else:
 		linear_velocity = Vector2.ZERO
 		angular_velocity = 0
@@ -154,8 +161,10 @@ func get_input():
 			
 			if Input.is_action_pressed("drift"):
 				steer_intensity = car_details.drift_steer_intensity
+				is_drifting = true
 			else:
 				steer_intensity = car_details.base_steer_intensity
+				is_drifting = false
 				
 			if Input.is_action_just_pressed("boost") and can_boost:
 				boost_timer.start()
@@ -202,13 +211,16 @@ func reset_position():
 	linear_velocity = Vector2.ZERO
 	angular_velocity = 0
 	
-func _on_Timer_timeout():
+func _on_ChaseTimer_timeout():
 	can_chase_ball = true
 	
 func _on_BoostTimer_timeout():
 	can_boost = false
 	boost_cooldown.start()
-	max_speed = car_details.max_speed
+	
+	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, "max_speed", car_details.max_speed, 1)
+	
 	engine_power = car_details.engine_power
 	
 func _on_BoostCooldown_timeout():
@@ -216,6 +228,10 @@ func _on_BoostCooldown_timeout():
 
 func _on_CarBase_body_entered(body):
 	var shake_factor = 0
+	
+	if !body.is_in_group("cars") or !body.is_in_group("puck"):
+		angular_damp = 15
+		collision_damp_timer.start()
 	
 	if (body.is_in_group("puck") or body.is_in_group("cars")) and linear_velocity.length() < body.linear_velocity.length():
 		shake_factor = range_lerp(body.linear_velocity.length(), 0, max_speed, 0.2, 1)
@@ -227,3 +243,6 @@ func _on_CarBase_body_entered(body):
 func _on_CarBase_zoom_camera(zoom_value):
 	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)
 	tween.tween_property(camera, "zoom", zoom_value, 1.5)
+	
+func _on_CollisionDampTimer_timeout():
+	angular_damp = 5

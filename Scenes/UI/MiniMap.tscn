@@ -72,3 +72,9 @@ frame = 4
 unique_name_in_owner = true
 margin_right = 32.0
 margin_bottom = 64.0
+
+[node name="ObjectsRefresh" type="Timer" parent="."]
+wait_time = 0.5
+autostart = true
+
+[connection signal="timeout" from="ObjectsRefresh" to="." method="_on_ObjectsRefresh_timeout"]
