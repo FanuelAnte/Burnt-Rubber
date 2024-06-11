@@ -120,12 +120,12 @@ func _physics_process(delta):
 		else:
 			angular_velocity = 0
 			
-		if is_drifting or abs(angular_velocity) > 0:
-			ice_particles_l.emitting = true
-			ice_particles_r.emitting = true
-		else:
-			ice_particles_l.emitting = false
-			ice_particles_r.emitting = false
+#		if is_drifting or abs(angular_velocity) > 2:
+#			ice_particles_l.emitting = true
+#			ice_particles_r.emitting = true
+#		else:
+#			ice_particles_l.emitting = false
+#			ice_particles_r.emitting = false
 		
 	else:
 		linear_velocity = Vector2.ZERO

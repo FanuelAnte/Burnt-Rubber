@@ -15,7 +15,7 @@ _data = [ Vector2( 0, 0.782209 ), 0.0, 0.0, 0, 0, Vector2( 0.498774, 1 ), 0.0, 0
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 6.00004
-height = 11.9999
+height = 13.9999
 
 [node name="CarBase" type="RigidBody2D" groups=["cars", "minimap_objects"]]
 mass = 1.5
@@ -41,6 +41,7 @@ rotation = 1.5708
 texture = ExtResource( 1 )
 hframes = 6
 vframes = 2
+frame = 5
 
 [node name="Camera" type="Camera2D" parent="."]
 unique_name_in_owner = true

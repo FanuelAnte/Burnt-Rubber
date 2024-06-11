@@ -17,6 +17,7 @@
 - [ ] SFX and Music
 - [x] Particle Effects
 - [ ] Controller Support
+- [x] Make the border tiles 8x8 to allow for more freedom in the level design
 # Nice-To-Haves
 - [ ] Intro Cutscene
 - [ ] Title Screen Animation

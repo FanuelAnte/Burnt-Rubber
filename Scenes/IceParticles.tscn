@@ -3,22 +3,21 @@
 [ext_resource path="res://Scripts/IceParticles.gd" type="Script" id=1]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.53681 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.658245, 0.53681 ), -2.21063, -2.21063, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
 
 [node name="IceParticles" type="CPUParticles2D" groups=["ice_particles"]]
 rotation = 3.14159
 z_index = -1
 emitting = false
-amount = 16
-speed_scale = 1.5
-randomness = 0.31
+lifetime = 0.5
+randomness = 0.1
 lifetime_randomness = 0.5
 local_coords = false
 direction = Vector2( 0, 0 )
-spread = 180.0
+spread = 90.0
 gravity = Vector2( 0, 0 )
-initial_velocity = 15.0
-initial_velocity_random = 0.15
+initial_velocity = 10.0
+initial_velocity_random = 0.1
 scale_amount = 2.0
 scale_amount_curve = SubResource( 1 )
 script = ExtResource( 1 )

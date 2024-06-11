@@ -8,10 +8,10 @@ friction = 0.0
 bounce = 2.0
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 13.0
+radius = 21.0
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 9.0
+radius = 12.0
 
 [node name="Puck" type="RigidBody2D" groups=["minimap_objects", "puck"]]
 mode = 2

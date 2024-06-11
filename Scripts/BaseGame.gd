@@ -7,9 +7,7 @@ onready var red_team = $"%RedTeam"
 
 func _ready():
 	#TODO: fix for odd match-ups and 1v1.
-	
 	randomize()
-	
 	var cars = []
 	
 	for i in range(2):

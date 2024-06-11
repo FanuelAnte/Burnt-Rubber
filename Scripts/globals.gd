@@ -12,10 +12,12 @@ const car_resources = {
 #Reset after exit.
 var time_limit = 300
 var counter_time = 3
-var is_counting_down = true
-var zooming_enabled = true
+
 var counter_time_left = "00"
 var time_left = "00:00.000"
+
+var is_counting_down = true
+var zooming_enabled = true
 
 var match_settings = {
 	"team_color" : "",
@@ -39,10 +41,10 @@ var player_speed = 0
 var puck_speed = 0
 var max_puck_speed = 350
 
-var max_camera_zoom = Vector2(1, 1) * 1.5
+var max_camera_zoom = Vector2(1, 1) * 2
 var shake_power_factor = 2
 var shake_length_factor = 1
-var auto_aim_speed = 2
+var auto_aim_speed = 3
 
 var starting_positions = {
 	0 : Vector2(-128, 480),
