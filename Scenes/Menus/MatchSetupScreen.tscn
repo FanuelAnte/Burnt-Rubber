@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/MatchSetupScreen.gd" type="Script" id=1]
 [ext_resource path="res://Themes/PrimaryTheme.tres" type="Theme" id=2]
@@ -11,6 +11,12 @@
 [ext_resource path="res://Assets/Exports/ArrowButtonDisablededR.png" type="Texture" id=9]
 
 [sub_resource type="ButtonGroup" id=1]
+
+[sub_resource type="InputEventAction" id=2]
+action = "pause"
+
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
 [node name="MatchSetupScreen" type="Control"]
 anchor_right = 1.0
@@ -174,6 +180,7 @@ unique_name_in_owner = true
 margin_top = 14.0
 margin_right = 224.0
 margin_bottom = 20.0
+shortcut = SubResource( 3 )
 text = "Back"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/PreviousCarBtn" to="." method="_on_PreviousCarBtn_pressed"]

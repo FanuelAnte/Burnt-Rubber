@@ -9,6 +9,17 @@ const car_resources = {
 	5 : preload("res://Scripts/Resources/Cars/2002Tii.tres")
 }
 
+const default_binds = {
+	"Forward" : "Z",
+	"Reverse" : "X",
+	"Steer Left-Menu Left" : "Left",
+	"Steer Right-Menu RIght" : "Right",
+	"Boost-Menu Up" : "Up",
+	"Drift-Menu Donw" : "Down",
+	"Accept" : "Enter",
+	"Pause-Back" : "Escape"
+}
+
 #Reset after exit.
 var time_limit = 300
 var counter_time = 3
