@@ -16,8 +16,19 @@ const default_binds = {
 	"Steer Right-Menu RIght" : "Right",
 	"Boost-Menu Up" : "Up",
 	"Drift-Menu Donw" : "Down",
-	"Accept" : "Enter",
-	"Pause-Back" : "Escape"
+#	"Accept" : "Enter",
+#	"Pause-Back" : "Escape"
+}
+
+var binds = {
+	"accelerate" : ["Forward", ""],
+	"brake" : ["Reverse", ""],
+	"steer_left" : ["Steer Left - Menu Left", ""],
+	"steer_right" : ["Steer Right - Menu RIght", ""],
+	"boost" : ["Boost - Menu Up", ""],
+	"drift" : ["Drift - Menu Donw", ""],
+#	"accept" : ["Accept", ""],
+#	"pause" : ["Pause - Back", ""]
 }
 
 #Reset after exit.
@@ -34,6 +45,8 @@ var match_settings = {
 	"team_color" : "",
 	"car_resource": ""
 }
+
+var options_menu_parent = ""
 
 #Reset after exit.
 var score = {

@@ -83,4 +83,5 @@ custom_constants/shadow_offset_y = 1
 text = "2024 - Fanuel Anteneh"
 
 [connection signal="pressed" from="MainMenu/VBoxContainer/PlayBtn" to="." method="_on_PlayBtn_pressed"]
+[connection signal="pressed" from="MainMenu/VBoxContainer/OptionsBtn" to="." method="_on_OptionsBtn_pressed"]
 [connection signal="pressed" from="MainMenu/VBoxContainer/ExitBtn" to="." method="_on_ExitBtn_pressed"]

@@ -1,5 +1,8 @@
 extends Control
 
+onready var input_map_menu = $"%InputMapMenu"
+
+onready var pause_menu_margin = $"%PauseMenuMargin"
 
 onready var blue_score = $"%BlueScore"
 onready var red_score = $"%RedScore"
@@ -18,6 +21,9 @@ func _process(delta):
 	
 	blue_score.text = str(Globals.score["blue"]).pad_zeros(2)
 	red_score.text = str(Globals.score["red"]).pad_zeros(2)
+
+func resume_grab_focus():
+	resume_btn.grab_focus()
 	
 func pause():
 	get_tree().set_deferred("paused", true)
@@ -38,3 +44,10 @@ func _on_EndMatchBtn_pressed():
 	get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
 	
 	Globals.reset_essentials()
+	
+func _on_OptionsBtn_pressed():
+	pause_menu_margin.hide()
+	Globals.options_menu_parent = "game"
+	input_map_menu.show()
+	input_map_menu.first_button_grab_focus()
+	

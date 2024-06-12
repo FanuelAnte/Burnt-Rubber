@@ -13,3 +13,8 @@ func _on_PlayBtn_pressed():
 	
 func _on_ExitBtn_pressed():
 	get_tree().quit()
+
+func _on_OptionsBtn_pressed():
+	Globals.options_menu_parent = "main"
+	get_tree().change_scene("res://Scenes/Menus/InputMapMenu.tscn")
+	
