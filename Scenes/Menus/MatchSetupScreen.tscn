@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/MatchSetupScreen.gd" type="Script" id=1]
 [ext_resource path="res://Themes/PrimaryTheme.tres" type="Theme" id=2]
@@ -9,6 +9,12 @@
 [ext_resource path="res://Assets/Exports/ArrowButtonPressedR.png" type="Texture" id=7]
 [ext_resource path="res://Assets/Exports/ArrowButtonDisablededL.png" type="Texture" id=8]
 [ext_resource path="res://Assets/Exports/ArrowButtonDisablededR.png" type="Texture" id=9]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallPressedL.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallDisablededL.png" type="Texture" id=11]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallDisablededR.png" type="Texture" id=12]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallUnpressedL.png" type="Texture" id=13]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallPressedR.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallUnpressedR.png" type="Texture" id=15]
 
 [sub_resource type="ButtonGroup" id=1]
 
@@ -35,14 +41,15 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -112.0
-margin_top = -72.0
+margin_top = -96.0
 margin_right = 112.0
-margin_bottom = 82.0
+margin_bottom = 90.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 margin_right = 224.0
-margin_bottom = 168.0
+margin_bottom = 198.0
 custom_constants/separation = 16
+alignment = 1
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
 margin_right = 224.0
@@ -51,22 +58,76 @@ text = "Match Setings"
 align = 1
 valign = 1
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="HBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 22.0
 margin_right = 224.0
-margin_bottom = 28.0
+margin_bottom = 48.0
+alignment = 1
+
+[node name="Match Duration" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_right = 224.0
+margin_bottom = 6.0
+text = "Match Duration"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer"]
+margin_top = 10.0
+margin_right = 224.0
+margin_bottom = 26.0
+alignment = 1
+
+[node name="DecDuration" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_left = 62.0
+margin_right = 78.0
+margin_bottom = 16.0
+focus_neighbour_right = NodePath("../IncDuration")
+texture_normal = ExtResource( 13 )
+texture_pressed = ExtResource( 10 )
+texture_hover = ExtResource( 10 )
+texture_disabled = ExtResource( 11 )
+texture_focused = ExtResource( 10 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="DurationLbl" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 82.0
+margin_top = 5.0
+margin_right = 141.0
+margin_bottom = 11.0
+text = "00 Minutes"
+
+[node name="IncDuration" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer"]
+margin_left = 145.0
+margin_right = 161.0
+margin_bottom = 16.0
+focus_neighbour_left = NodePath("../DecDuration")
+texture_normal = ExtResource( 15 )
+texture_pressed = ExtResource( 14 )
+texture_hover = ExtResource( 14 )
+texture_disabled = ExtResource( 12 )
+texture_focused = ExtResource( 14 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 64.0
+margin_right = 224.0
+margin_bottom = 116.0
+
+[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_right = 224.0
+margin_bottom = 6.0
 text = "Select Vehicle"
 align = 1
 valign = 1
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 44.0
-margin_right = 224.0
-margin_bottom = 86.0
-
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
+margin_top = 10.0
 margin_right = 224.0
-margin_bottom = 32.0
+margin_bottom = 42.0
 alignment = 1
 
 [node name="PreviousCarBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer"]
@@ -106,17 +167,17 @@ texture_focused = ExtResource( 7 )
 
 [node name="CarNameLbl" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
 unique_name_in_owner = true
-margin_top = 36.0
+margin_top = 46.0
 margin_right = 224.0
-margin_bottom = 42.0
+margin_bottom = 52.0
 text = "-"
 align = 1
 valign = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 102.0
+margin_top = 132.0
 margin_right = 224.0
-margin_bottom = 132.0
+margin_bottom = 162.0
 custom_constants/separation = 8
 alignment = 1
 
@@ -163,9 +224,9 @@ group = SubResource( 1 )
 text = "Red"
 
 [node name="HBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
-margin_top = 148.0
+margin_top = 178.0
 margin_right = 224.0
-margin_bottom = 168.0
+margin_bottom = 198.0
 custom_constants/separation = 8
 alignment = 1
 
@@ -183,6 +244,8 @@ margin_bottom = 20.0
 shortcut = SubResource( 3 )
 text = "Back"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/DecDuration" to="." method="_on_DecDuration_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/IncDuration" to="." method="_on_IncDuration_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/PreviousCarBtn" to="." method="_on_PreviousCarBtn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer2/HBoxContainer/NextCarBtn" to="." method="_on_NextCarBtn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/BlueCheckbox" to="." method="_on_BlueCheckbox_pressed"]

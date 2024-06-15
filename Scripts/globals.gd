@@ -12,26 +12,27 @@ const car_resources = {
 const default_binds = {
 	"accelerate" : ["Forward", ""],
 	"brake" : ["Reverse", ""],
+	"boost" : ["Boost", ""],
 	"steer_left" : ["Steer Left", ""],
 	"steer_right" : ["Steer Right", ""],
-	"boost" : ["Boost", ""],
 	"drift" : ["Drift", ""]
 }
 
 var binds = {
 	"accelerate" : ["Forward", ""],
-	"brake" : ["Reverse", ""],
 	"steer_left" : ["Steer Left", ""],
 	"steer_right" : ["Steer Right", ""],
+	"brake" : ["Reverse", ""],
 	"boost" : ["Boost", ""],
-	"drift" : ["Drift", ""]
+	"drift" : ["Drift", ""],
 }
 
 #Reset after exit.
-var time_limit = 300
+var match_duration = 180
+var time_limit = 180
 var counter_time = 3
 
-var counter_time_left = "00"
+var counter_time_left = "0"
 var time_left = "00:00.000"
 
 var is_counting_down = true
@@ -78,22 +79,55 @@ var starting_positions = {
 	2 : Vector2(0, 480)
 }
 
+var settings_file
+
 func _process(delta):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(range_lerp(master_volume, 0, 10, 0, 1)))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear2db(range_lerp(sfx_volume, 0, 10, 0, 1)))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(range_lerp(music_volume, 0, 10, 0, 1)))
 
+	
+func _ready():
+#	save_settings()
+	load_settings()
+
 func reset_essentials():
-	time_limit = 300
+	time_limit = match_duration
 	counter_time = 3
 	is_counting_down = true
 	stop_engines = false
 	
+	counter_time_left = "0"
+	time_left = "00:00.000"
+	
 	score["red"] = 0
 	score["blue"] = 0
+
+func save_settings():
+	for action in InputMap.get_actions():
+		if action in binds:
+			settings_file.binds[action] = InputMap.get_action_list(action)
 	
-func save_preferences():
-	pass
+	settings_file.master_volume = master_volume
+	settings_file.sfx_volume = sfx_volume
+	settings_file.music_volume = music_volume
 	
-func load_preferences():
-	pass
+	ResourceSaver.save("user://settings_save_file.tres", settings_file)
+	
+func load_settings():
+	settings_file = load("user://settings_save_file.tres")
+	
+	if not settings_file:
+		settings_file = settings_save_resource.new()
+		save_settings()
+	
+	for action in settings_file.binds:
+		InputMap.action_erase_events(action)
+		for input_event in settings_file.binds[action]:
+			InputMap.action_add_event(action, input_event)
+	
+	master_volume = settings_file.master_volume
+	sfx_volume = settings_file.sfx_volume
+	music_volume = settings_file.music_volume
+	
+	

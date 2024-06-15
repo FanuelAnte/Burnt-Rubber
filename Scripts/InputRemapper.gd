@@ -20,7 +20,6 @@ func _ready():
 	main_parent = get_parent().get_parent().get_parent().get_parent()
 	remap_prompt = get_parent().get_parent().get_parent().get_parent().get_child(2)
 	
-	
 	action_name_lbl.text = Globals.binds.values()[index][0]
 	action_name = Globals.binds.keys()[index]
 	
@@ -43,7 +42,7 @@ func map_new_button(button):
 	new_event.set_scancode(button)
 	InputMap.action_add_event(action_name, new_event)
 	
-	yield(get_tree().create_timer(0.2), "timeout")
+	yield(get_tree().create_timer(0.1), "timeout")
 	
 	remap_btn.grab_focus()
 	

@@ -1,11 +1,11 @@
 # Must-Haves
-- [ ] Endgame events and screen
+- [x] Endgame events and screen
 	- [x] Score
-	- [ ] Rematch
-		- [ ] Remember Current Settings and Show the Match Setup Screen with Current Selection and Settings.
+	- [x] Rematch
+		- [x] Remember Current Settings and Show the Match Setup Screen with Current Selection and Settings.
 	- [x] Main-Menu button
 - [ ] Options Screen
-	- [ ] Audio Options
+	- [x] Audio Options
 	- [x] Input Map
 	- [ ] Gameplay Options
 		- [ ] Auto Aim
@@ -15,13 +15,27 @@
 	- [x] Pick team
 	- [x] Pick Car
 - [ ] SFX and Music
+	- [ ] SFX
+		- [ ] Ball
+			- [ ] hit
+			- [ ] goal
+		- [ ] Cars
+			- [ ] hit
+			- [ ] engine
+			- [ ] skid
+		- [ ] UI
+			- [ ] select
+			- [ ] navigate
+			- [ ] back
 - [x] Particle Effects
-- [ ] Controller Support
+- [ ] How to play screen.
+- [ ] Vehicle differentiation
 - [x] Make the border tiles 8x8 to allow for more freedom in the level design
 # Nice-To-Haves
 - [ ] Intro Cutscene
 - [ ] Title Screen Animation
 - [ ] Split-Screen
+- [ ] Controller Support
 - [ ] Local Multiplayer
 - [ ] Game modifiers and details
 	- [ ] Ball Speed

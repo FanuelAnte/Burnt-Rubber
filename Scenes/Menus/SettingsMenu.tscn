@@ -112,6 +112,9 @@ texture_pressed = ExtResource( 4 )
 texture_hover = ExtResource( 4 )
 texture_disabled = ExtResource( 6 )
 texture_focused = ExtResource( 4 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
 margin_top = 20.0

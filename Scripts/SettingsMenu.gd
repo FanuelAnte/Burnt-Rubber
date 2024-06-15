@@ -28,9 +28,13 @@ func _on_BackButton_pressed():
 		get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
 	else:
 		self.hide()
+		get_parent().menu_open = false
 		get_parent().pause_menu_margin.show()
 		get_parent().resume_grab_focus()
-		
+	
+	Globals.save_settings()
+	
+	
 func _on_DecMasterVolBtn_pressed():
 	if Globals.master_volume > 0:
 		Globals.master_volume -= 1

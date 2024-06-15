@@ -15,13 +15,13 @@ _global_script_classes=[ {
 "path": "res://Scripts/Resources/CarResource.gd"
 }, {
 "base": "Resource",
-"class": "settings_save_file",
+"class": "settings_save_resource",
 "language": "GDScript",
 "path": "res://Scripts/Resources/SettingsSaveFile.gd"
 } ]
 _global_script_class_icons={
 "car_resource": "",
-"settings_save_file": ""
+"settings_save_resource": ""
 }
 
 [application]
@@ -35,6 +35,8 @@ config/icon="res://icon.png"
 [autoload]
 
 Globals="*res://Scripts/globals.gd"
+InterfaceAudioComponent="*res://Scenes/Components/InterfaceAudioComponent.tscn"
+MusicComponent="*res://Scenes/Components/MusicComponent.tscn"
 
 [debug]
 
@@ -44,7 +46,6 @@ settings/fps/force_fps=59
 
 window/size/width=256
 window/size/height=240
-window/size/fullscreen=true
 window/size/test_width=512
 window/size/test_height=480
 window/dpi/allow_hidpi=true

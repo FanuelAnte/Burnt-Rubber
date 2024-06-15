@@ -143,6 +143,7 @@ unique_name_in_owner = true
 visible = false
 
 [connection signal="pressed" from="PauseMenuMargin/VBoxContainer/CenterContainer/VBoxContainer2/ResumeBtn" to="." method="_on_ResumeBtn_pressed"]
+[connection signal="pressed" from="PauseMenuMargin/VBoxContainer/CenterContainer/VBoxContainer2/RestartBtn" to="." method="_on_RestartBtn_pressed"]
 [connection signal="pressed" from="PauseMenuMargin/VBoxContainer/CenterContainer/VBoxContainer2/InputMapMenuBtn" to="." method="_on_InputMapMenuBtn_pressed"]
 [connection signal="pressed" from="PauseMenuMargin/VBoxContainer/CenterContainer/VBoxContainer2/SettingsBtn" to="." method="_on_SettingsBtn_pressed"]
 [connection signal="pressed" from="PauseMenuMargin/VBoxContainer/CenterContainer/VBoxContainer2/EndMatchBtn" to="." method="_on_EndMatchBtn_pressed"]

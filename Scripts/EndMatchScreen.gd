@@ -11,6 +11,10 @@ func _ready():
 func _process(delta):
 	blue_score.text = str(Globals.score["blue"]).pad_zeros(2)
 	red_score.text = str(Globals.score["red"]).pad_zeros(2)
+
+func _on_RematchBtn_pressed():
+	Globals.reset_essentials()
+	get_tree().change_scene("res://Scenes/BaseGame.tscn")
 	
 func _on_MainMenuBtn_pressed():
 	get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")

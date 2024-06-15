@@ -108,7 +108,7 @@ func _process(delta):
 				has_zoomed_in = true
 				has_zoomed_out = false
 		
-func _physics_process(delta):
+func _physics_process(_delta):
 	#TODO: Draw a straight line between you and the ball when you get within 32 to 128 pixels of the puck to show the boost trajectory and effect.
 	if !Globals.is_counting_down:
 		applied_force = velocity

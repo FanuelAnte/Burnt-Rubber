@@ -111,4 +111,5 @@ margin_right = 53.0
 margin_bottom = 20.0
 text = "Main menu"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2/RematchBtn" to="." method="_on_RematchBtn_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/VBoxContainer2/MainMenuBtn" to="." method="_on_MainMenuBtn_pressed"]

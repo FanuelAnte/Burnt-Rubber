@@ -10,6 +10,7 @@ onready var red_score = $"%RedScore"
 onready var resume_btn = $"%ResumeBtn"
 
 var paused = false
+var menu_open = false
 
 func _ready():
 	if paused:
@@ -19,7 +20,10 @@ func _process(delta):
 	if Input.is_action_just_pressed("pause"):
 		if !get_tree().paused:
 			pause()
-	
+		else:
+			if !menu_open:
+				resume()
+			
 	blue_score.text = str(Globals.score["blue"]).pad_zeros(2)
 	red_score.text = str(Globals.score["red"]).pad_zeros(2)
 
@@ -43,18 +47,25 @@ func _on_ResumeBtn_pressed():
 func _on_EndMatchBtn_pressed():
 	resume()
 	get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
-	
 	Globals.reset_essentials()
 	
 func _on_InputMapMenuBtn_pressed():
+	menu_open = true
 	pause_menu_margin.hide()
 	Globals.input_menu_parent = "game"
 	input_map_menu.show()
 	input_map_menu.first_button_grab_focus()
-
-
+	
 func _on_SettingsBtn_pressed():
+	menu_open = true
 	pause_menu_margin.hide()
 	Globals.settings_menu_parent = "game"
 	settings_menu.show()
 	settings_menu.first_button_grab_focus()
+
+func _on_RestartBtn_pressed():
+	resume()
+	get_tree().reload_current_scene()
+#	get_tree().change_scene("res://Scenes/Menus/MatchSetupScreen.tscn")
+	Globals.reset_essentials()
+	

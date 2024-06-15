@@ -31,8 +31,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Vehicles.md",
+                "file": "To-Dos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Vehicles.md",
+                "file": "To-Dos.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Vehicles.md"
+                "file": "To-Dos.md"
               }
             }
           }
@@ -159,9 +158,9 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "98ba9c4dd0f78de0",
+  "active": "1a0240d9063e965f",
   "lastOpenFiles": [
-    "To-Dos.md",
-    "Vehicles.md"
+    "Vehicles.md",
+    "To-Dos.md"
   ]
 }
