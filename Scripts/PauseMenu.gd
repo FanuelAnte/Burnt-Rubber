@@ -17,6 +17,10 @@ func _ready():
 		resume_btn.grab_focus()
 	
 func _process(delta):
+	if !menu_open and self.is_visible_in_tree():
+		if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down"):
+			InterfaceAudioComponent.play_navigate()
+		
 	if Input.is_action_just_pressed("pause"):
 		if !get_tree().paused:
 			pause()
@@ -31,12 +35,14 @@ func resume_grab_focus():
 	resume_btn.grab_focus()
 	
 func pause():
+	InterfaceAudioComponent.play_back()
 	get_tree().set_deferred("paused", true)
 	resume_btn.grab_focus()
 	paused = true
 	self.show()
 
 func resume():
+	InterfaceAudioComponent.play_accept()
 	get_tree().set_deferred("paused", false)
 	paused = false
 	self.hide()
@@ -50,6 +56,7 @@ func _on_EndMatchBtn_pressed():
 	Globals.reset_essentials()
 	
 func _on_InputMapMenuBtn_pressed():
+	InterfaceAudioComponent.play_accept()
 	menu_open = true
 	pause_menu_margin.hide()
 	Globals.input_menu_parent = "game"
@@ -57,6 +64,7 @@ func _on_InputMapMenuBtn_pressed():
 	input_map_menu.first_button_grab_focus()
 	
 func _on_SettingsBtn_pressed():
+	InterfaceAudioComponent.play_accept()
 	menu_open = true
 	pause_menu_margin.hide()
 	Globals.settings_menu_parent = "game"

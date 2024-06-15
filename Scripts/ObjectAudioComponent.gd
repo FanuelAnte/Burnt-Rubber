@@ -1,21 +1,29 @@
 extends Node2D
 
-
-onready var crash_1 = $"%Crash1"
-onready var crash_2 = $"%Crash2"
-
-onready var ball_crash = [crash_1, crash_2]
+onready var puck_hits = $"%PuckHits"
+onready var car_hits = $"%CarHits"
 
 var rng = RandomNumberGenerator.new()
 
 func _ready():
 	pass
 	
-func play_crash():
+func play_puck_hit(volume_level):
 	randomize()
 	
-	var crash = ball_crash[rng.randi_range(0, ball_crash.size() - 1)]
+	var hit = puck_hits.get_child(rng.randi_range(0, puck_hits.get_child_count() - 1))
+	hit.volume_db = volume_level
 	
-	if !crash.playing:
-		crash.pitch_scale = rng.randf_range(1, 2)
-		crash.play()
+	if !hit.playing:
+		hit.pitch_scale = rng.randf_range(1, 1.1)
+		hit.play()
+
+func play_car_hit(volume_level):
+	randomize()
+	
+	var hit = car_hits.get_child(rng.randi_range(0, car_hits.get_child_count() - 1))
+	hit.volume_db = volume_level
+	
+	if !hit.playing:
+		hit.pitch_scale = rng.randf_range(1, 1.1)
+		hit.play()

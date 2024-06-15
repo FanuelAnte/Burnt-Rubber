@@ -42,11 +42,14 @@ func map_new_button(button):
 	new_event.set_scancode(button)
 	InputMap.action_add_event(action_name, new_event)
 	
-	yield(get_tree().create_timer(0.1), "timeout")
+	yield(get_tree().create_timer(0.2), "timeout")
+	main_parent.is_remapping = false
 	
 	remap_btn.grab_focus()
 	
 func _on_RemapBtn_pressed():
+	main_parent.is_remapping = true
+	InterfaceAudioComponent.play_accept()
 	remap_btn.release_focus()
 	
 	remap_prompt.open(Globals.binds.values()[index][1], Globals.binds.values()[index][0])

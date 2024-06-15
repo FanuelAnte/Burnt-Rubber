@@ -84,8 +84,8 @@ var settings_file
 func _process(delta):
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(range_lerp(master_volume, 0, 10, 0, 1)))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear2db(range_lerp(sfx_volume, 0, 10, 0, 1)))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("UI"), linear2db(range_lerp(sfx_volume, 0, 10, 0, 1)))
 	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(range_lerp(music_volume, 0, 10, 0, 1)))
-
 	
 func _ready():
 #	save_settings()

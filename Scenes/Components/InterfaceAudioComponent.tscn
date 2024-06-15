@@ -1,3 +1,25 @@
-[gd_scene format=2]
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Audio/SFX/UI/accept.ogg" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Audio/SFX/UI/navigate.ogg" type="AudioStream" id=2]
+[ext_resource path="res://Assets/Audio/SFX/UI/back.ogg" type="AudioStream" id=3]
+[ext_resource path="res://Scripts/InterfaceAudioComponent.gd" type="Script" id=4]
 
 [node name="InterfaceAudioComponent" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 4 )
+
+[node name="Accept" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource( 1 )
+bus = "UI"
+
+[node name="Back" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource( 3 )
+bus = "UI"
+
+[node name="Navigate" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource( 2 )
+bus = "UI"

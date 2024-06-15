@@ -6,6 +6,8 @@ signal zoom_camera(zoom_value)
 var has_zoomed_out = false
 var has_zoomed_in = true
 
+onready var object_audio_component = $"%ObjectAudioComponent"
+
 onready var chase_timer = $"%ChaseTimer"
 onready var collider = $"%Collider"
 onready var sprite = $"%Sprite"
@@ -239,6 +241,18 @@ func _on_CarBase_body_entered(body):
 		shake_factor = range_lerp(linear_velocity.length(), 0, max_speed, 0.5, 1)
 	
 	camera_shake(Globals.shake_length_factor * shake_factor, Globals.shake_power_factor * shake_factor)
+	
+	var volume_level
+	if body.is_in_group("cars") or body.is_in_group("puck"):
+		if body.linear_velocity.length() > linear_velocity.length():
+			volume_level = linear2db(range_lerp(body.linear_velocity.length(), 0, 1000, 0, 1))
+		else:
+			volume_level = linear2db(range_lerp(linear_velocity.length(), 0, 1000, 0, 1))
+			
+	else:
+		volume_level = linear2db(range_lerp(linear_velocity.length(), 0, 1000, 0, 1))
+	
+	object_audio_component.play_car_hit(volume_level)
 	
 func _on_CarBase_zoom_camera(zoom_value):
 	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN)

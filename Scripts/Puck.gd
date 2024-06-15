@@ -54,4 +54,14 @@ func _on_Area2D_area_entered(area):
 		reset_everything()
 	
 func _on_Puck_body_entered(body):
-	object_audio_component.play_crash()
+	var volume_level
+	if body.is_in_group("cars"):
+		if body.linear_velocity.length() > linear_velocity.length():
+			volume_level = linear2db(range_lerp(body.linear_velocity.length(), 0, 400, 0, 1))
+		else:
+			volume_level = linear2db(range_lerp(linear_velocity.length(), 0, 400, 0, 1))
+			
+	else:
+		volume_level = linear2db(range_lerp(linear_velocity.length(), 0, 400, 0, 1))
+		
+	object_audio_component.play_puck_hit(volume_level)

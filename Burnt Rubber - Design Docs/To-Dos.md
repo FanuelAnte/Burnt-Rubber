@@ -17,16 +17,16 @@
 - [ ] SFX and Music
 	- [ ] SFX
 		- [ ] Ball
-			- [ ] hit
-			- [ ] goal
+			- [x] hit
+			- [ ] goal (buzzer)
 		- [ ] Cars
-			- [ ] hit
+			- [x] hit
 			- [ ] engine
 			- [ ] skid
-		- [ ] UI
-			- [ ] select
-			- [ ] navigate
-			- [ ] back
+		- [x] UI
+			- [x] select
+			- [x] navigate
+			- [x] back
 - [x] Particle Effects
 - [ ] How to play screen.
 - [ ] Vehicle differentiation
