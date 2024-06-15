@@ -1,6 +1,7 @@
 extends Control
 
 onready var input_map_menu = $"%InputMapMenu"
+onready var settings_menu = $"%SettingsMenu"
 
 onready var pause_menu_margin = $"%PauseMenuMargin"
 
@@ -45,9 +46,15 @@ func _on_EndMatchBtn_pressed():
 	
 	Globals.reset_essentials()
 	
-func _on_OptionsBtn_pressed():
+func _on_InputMapMenuBtn_pressed():
 	pause_menu_margin.hide()
-	Globals.options_menu_parent = "game"
+	Globals.input_menu_parent = "game"
 	input_map_menu.show()
 	input_map_menu.first_button_grab_focus()
-	
+
+
+func _on_SettingsBtn_pressed():
+	pause_menu_margin.hide()
+	Globals.settings_menu_parent = "game"
+	settings_menu.show()
+	settings_menu.first_button_grab_focus()

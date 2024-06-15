@@ -9,7 +9,7 @@ func first_button_grab_focus():
 	input_remapper.remap_btn.grab_focus()
 	
 func _on_BackBtn_pressed():
-	if Globals.options_menu_parent == "main":
+	if Globals.input_menu_parent == "main":
 		get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
 	else:
 		self.hide()

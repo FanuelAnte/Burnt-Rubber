@@ -6,7 +6,7 @@
 	- [x] Main-Menu button
 - [ ] Options Screen
 	- [ ] Audio Options
-	- [ ] Input Map
+	- [x] Input Map
 	- [ ] Gameplay Options
 		- [ ] Auto Aim
 		- [ ] Zoom

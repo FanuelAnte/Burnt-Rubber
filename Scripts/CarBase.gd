@@ -138,7 +138,7 @@ func get_input():
 	turn = 0
 	is_steering = false
 	
-	if !Globals.is_counting_down:
+	if !Globals.is_counting_down and !Globals.stop_engines:
 		if is_player:
 			if Input.is_action_pressed("steer_right") and boost_timer.is_stopped():
 				is_steering = true
@@ -225,7 +225,7 @@ func _on_BoostTimer_timeout():
 	
 func _on_BoostCooldown_timeout():
 	can_boost = true
-
+	
 func _on_CarBase_body_entered(body):
 	var shake_factor = 0
 	

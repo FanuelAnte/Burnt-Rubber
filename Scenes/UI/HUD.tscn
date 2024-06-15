@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Exports/HUDBorder.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Fonts/PIXELFONT225.TTF" type="DynamicFontData" id=2]
@@ -11,6 +11,23 @@
 [sub_resource type="DynamicFont" id=3]
 size = 12
 font_data = ExtResource( 2 )
+
+[sub_resource type="Animation" id=7]
+resource_name = "GoalAnimation"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("GoalRect/GoalText:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "", "G", "Go", "Goo", "Gooo", "Goooo", "Gooooo", "Goooooo", "Gooooooa", "Gooooooaa", "Gooooooaaa", "Gooooooaaaa", "Gooooooaaaaa", "Gooooooaaaaal", "Gooooooaaaaall", "Gooooooaaaaalll", "Gooooooaaaaalll!", "Gooooooaaaaalll!!", "Gooooooaaaaalll!!!", "Gooooooaaaaalll!!!!", "Gooooooaaaaalll!!!!!", "Gooooooaaaaalll!!!!!" ]
+}
 
 [sub_resource type="Animation" id=6]
 resource_name = "LoadTransition"
@@ -27,6 +44,21 @@ tracks/0/keys = {
 "values": [ Vector2( -112, 0 ), Vector2( -112, 0 ), Vector2( 256, 0 ) ]
 }
 
+[sub_resource type="Animation" id=8]
+resource_name = "MatchEndAnimation"
+tracks/0/type = "value"
+tracks/0/path = NodePath("MatchEndRect/MatchEndText:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ "MATCH Over", "MATCH Over" ]
+}
+
 [sub_resource type="Animation" id=4]
 length = 0.001
 tracks/0/type = "value"
@@ -40,6 +72,30 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( -400, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("GoalRect/GoalText:text")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "" ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("MatchEndRect/MatchEndText:text")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ "" ]
 }
 
 [sub_resource type="Animation" id=5]
@@ -157,6 +213,7 @@ align = 1
 
 [node name="CounterRect" type="ColorRect" parent="."]
 unique_name_in_owner = true
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -181,6 +238,65 @@ custom_fonts/font = SubResource( 3 )
 text = "0"
 align = 1
 
+[node name="GoalRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -28.0
+margin_right = 128.0
+margin_bottom = 28.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="GoalText" type="Label" parent="GoalRect"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -6.0
+margin_right = 120.0
+margin_bottom = 6.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 3 )
+align = 1
+valign = 1
+
+[node name="MatchEndRect" type="ColorRect" parent="."]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -128.0
+margin_top = -28.0
+margin_right = 128.0
+margin_bottom = 28.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="MatchEndText" type="Label" parent="MatchEndRect"]
+unique_name_in_owner = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -6.0
+margin_right = 120.0
+margin_bottom = 6.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 3 )
+align = 1
+valign = 1
+
 [node name="TransitionTexture" type="TextureRect" parent="."]
 unique_name_in_owner = true
 anchor_left = 0.5
@@ -194,10 +310,14 @@ texture = ExtResource( 4 )
 
 [node name="AnimPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
+anims/GoalAnimation = SubResource( 7 )
 anims/LoadTransition = SubResource( 6 )
+anims/MatchEndAnimation = SubResource( 8 )
 anims/RESET = SubResource( 4 )
 anims/ScreenTransition = SubResource( 5 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
 unique_name_in_owner = true
 visible = false
+
+[connection signal="animation_finished" from="AnimPlayer" to="." method="_on_AnimPlayer_animation_finished"]

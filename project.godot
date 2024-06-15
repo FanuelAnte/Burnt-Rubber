@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "car_resource",
 "language": "GDScript",
 "path": "res://Scripts/Resources/CarResource.gd"
+}, {
+"base": "Resource",
+"class": "settings_save_file",
+"language": "GDScript",
+"path": "res://Scripts/Resources/SettingsSaveFile.gd"
 } ]
 _global_script_class_icons={
-"car_resource": ""
+"car_resource": "",
+"settings_save_file": ""
 }
 
 [application]
@@ -38,6 +44,7 @@ settings/fps/force_fps=59
 
 window/size/width=256
 window/size/height=240
+window/size/fullscreen=true
 window/size/test_width=512
 window/size/test_height=480
 window/dpi/allow_hidpi=true
@@ -70,6 +77,10 @@ texture={
 "size_limit": 0,
 "stream": false,
 "svg/scale": 1.0
+}
+ogg_vorbis={
+"loop": false,
+"loop_offset": 0
 }
 
 [input]

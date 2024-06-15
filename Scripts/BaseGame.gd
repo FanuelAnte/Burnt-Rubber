@@ -1,26 +1,30 @@
 extends Node2D
 
 onready var car_base = preload("res://Scenes/CarBase.tscn")
+onready var hud = $"%HUD"
 
 onready var blue_team = $"%BlueTeam"
 onready var red_team = $"%RedTeam"
 
 func _ready():
 	#TODO: fix for odd match-ups and 1v1.
-	randomize()
 	var cars = []
 	
 	for i in range(2):
 		var car = car_base.instance()
 		car.team_color = "blue"
-		car.car_details = Globals.car_resources[int(stepify(rand_range(0, 5), 1))]
+		randomize()
+		var index = int(stepify(rand_range(0, 5), 1))
+		car.car_details = Globals.car_resources[index]
 		
 		cars.append(car)
 		
 	for i in range(2):
 		var car = car_base.instance()
 		car.team_color = "red"
-		car.car_details = Globals.car_resources[int(stepify(rand_range(0, 5), 1))]
+		randomize()
+		var index = int(stepify(rand_range(0, 5), 1))
+		car.car_details = Globals.car_resources[index]
 		
 		cars.append(car)
 	
@@ -56,7 +60,8 @@ func _process(delta):
 		else:
 			Globals.time_limit = 0
 			#TODO: End Game.
-			get_tree().change_scene("res://Scenes/Menus/EndMatchScreen.tscn")
+			Globals.stop_engines = true
+			hud.play_match_end_animation()
 			
 		var total_seconds = int(Globals.time_limit)
 		var minutes = int((total_seconds % 3600) / 60)

@@ -43,7 +43,7 @@ func map_new_button(button):
 	new_event.set_scancode(button)
 	InputMap.action_add_event(action_name, new_event)
 	
-	yield(get_tree().create_timer(0.5), "timeout")
+	yield(get_tree().create_timer(0.2), "timeout")
 	
 	remap_btn.grab_focus()
 	

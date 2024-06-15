@@ -1,0 +1,236 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Themes/PrimaryTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallPressedL.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallDisablededL.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallPressedR.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallUnpressedR.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallDisablededR.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Exports/ArrowButtonSmallUnpressedL.png" type="Texture" id=7]
+[ext_resource path="res://Scripts/SettingsMenu.gd" type="Script" id=8]
+
+[sub_resource type="InputEventAction" id=4]
+action = "pause"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
+
+[node name="SettingsMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 8 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -96.0
+margin_top = -50.0
+margin_right = 96.0
+margin_bottom = 50.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 192.0
+margin_bottom = 100.0
+custom_constants/separation = 16
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+visible = false
+margin_right = 192.0
+margin_bottom = 6.0
+text = "Settings"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_right = 192.0
+margin_bottom = 70.0
+custom_constants/separation = 8
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_right = 192.0
+margin_bottom = 6.0
+text = "Audio Settings"
+align = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+margin_top = 14.0
+margin_right = 192.0
+margin_bottom = 70.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+margin_right = 192.0
+margin_bottom = 16.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_top = 5.0
+margin_right = 77.0
+margin_bottom = 11.0
+text = "Master Volume"
+align = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+margin_left = 81.0
+margin_right = 136.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="DecMasterVolBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 140.0
+margin_right = 156.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 2 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 2 )
+
+[node name="MasterVolLbl" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 160.0
+margin_top = 5.0
+margin_right = 172.0
+margin_bottom = 11.0
+text = "00"
+align = 1
+
+[node name="IncMasterVolBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 176.0
+margin_right = 192.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 4 )
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+margin_top = 20.0
+margin_right = 192.0
+margin_bottom = 36.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_top = 5.0
+margin_right = 59.0
+margin_bottom = 11.0
+text = "SFX Volume"
+align = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+margin_left = 63.0
+margin_right = 136.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="DecSfxVolBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 140.0
+margin_right = 156.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 2 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 2 )
+
+[node name="SfxVolLbl" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 160.0
+margin_top = 5.0
+margin_right = 172.0
+margin_bottom = 11.0
+text = "00"
+align = 1
+
+[node name="IncSfxVolBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 176.0
+margin_right = 192.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 4 )
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer"]
+margin_top = 40.0
+margin_right = 192.0
+margin_bottom = 56.0
+alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_top = 5.0
+margin_right = 71.0
+margin_bottom = 11.0
+text = "Music Volume"
+align = 1
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+margin_left = 75.0
+margin_right = 136.0
+margin_bottom = 16.0
+size_flags_horizontal = 3
+
+[node name="DecMusicVolBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+margin_left = 140.0
+margin_right = 156.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 7 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 2 )
+texture_disabled = ExtResource( 3 )
+texture_focused = ExtResource( 2 )
+
+[node name="MusicVolLbl" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+margin_left = 160.0
+margin_top = 5.0
+margin_right = 172.0
+margin_bottom = 11.0
+text = "00"
+align = 1
+
+[node name="IncMusicVolBtn" type="TextureButton" parent="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+margin_left = 176.0
+margin_right = 192.0
+margin_bottom = 16.0
+texture_normal = ExtResource( 5 )
+texture_pressed = ExtResource( 4 )
+texture_hover = ExtResource( 4 )
+texture_disabled = ExtResource( 6 )
+texture_focused = ExtResource( 4 )
+
+[node name="HBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+margin_top = 86.0
+margin_right = 192.0
+margin_bottom = 92.0
+custom_constants/separation = 8
+alignment = 1
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+margin_right = 192.0
+margin_bottom = 6.0
+shortcut = SubResource( 5 )
+text = "Back"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/DecMasterVolBtn" to="." method="_on_DecMasterVolBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer/IncMasterVolBtn" to="." method="_on_IncMasterVolBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/DecSfxVolBtn" to="." method="_on_DecSfxVolBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer2/IncSfxVolBtn" to="." method="_on_IncSfxVolBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3/DecMusicVolBtn" to="." method="_on_DecMusicVolBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/VBoxContainer/HBoxContainer3/IncMusicVolBtn" to="." method="_on_IncMusicVolBtn_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer2/BackButton" to="." method="_on_BackButton_pressed"]

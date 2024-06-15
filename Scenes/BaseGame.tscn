@@ -28,3 +28,4 @@ unique_name_in_owner = true
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="CanvasLayer" groups=["hud"] instance=ExtResource( 4 )]
+unique_name_in_owner = true

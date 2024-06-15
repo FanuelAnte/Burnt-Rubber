@@ -10,25 +10,21 @@ const car_resources = {
 }
 
 const default_binds = {
-	"Forward" : "Z",
-	"Reverse" : "X",
-	"Steer Left-Menu Left" : "Left",
-	"Steer Right-Menu RIght" : "Right",
-	"Boost-Menu Up" : "Up",
-	"Drift-Menu Donw" : "Down",
-#	"Accept" : "Enter",
-#	"Pause-Back" : "Escape"
+	"accelerate" : ["Forward", ""],
+	"brake" : ["Reverse", ""],
+	"steer_left" : ["Steer Left", ""],
+	"steer_right" : ["Steer Right", ""],
+	"boost" : ["Boost", ""],
+	"drift" : ["Drift", ""]
 }
 
 var binds = {
 	"accelerate" : ["Forward", ""],
 	"brake" : ["Reverse", ""],
-	"steer_left" : ["Steer Left - Menu Left", ""],
-	"steer_right" : ["Steer Right - Menu RIght", ""],
-	"boost" : ["Boost - Menu Up", ""],
-	"drift" : ["Drift - Menu Donw", ""],
-#	"accept" : ["Accept", ""],
-#	"pause" : ["Pause - Back", ""]
+	"steer_left" : ["Steer Left", ""],
+	"steer_right" : ["Steer Right", ""],
+	"boost" : ["Boost", ""],
+	"drift" : ["Drift", ""]
 }
 
 #Reset after exit.
@@ -40,13 +36,15 @@ var time_left = "00:00.000"
 
 var is_counting_down = true
 var zooming_enabled = true
+var stop_engines = false
 
 var match_settings = {
 	"team_color" : "",
 	"car_resource": ""
 }
 
-var options_menu_parent = ""
+var input_menu_parent = ""
+var settings_menu_parent = ""
 
 #Reset after exit.
 var score = {
@@ -70,16 +68,32 @@ var shake_power_factor = 2
 var shake_length_factor = 1
 var auto_aim_speed = 3
 
+var master_volume = 10
+var sfx_volume = 10
+var music_volume = 10
+
 var starting_positions = {
 	0 : Vector2(-128, 480),
 	1 : Vector2(128, 480),
 	2 : Vector2(0, 480)
 }
 
+func _process(delta):
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), linear2db(range_lerp(master_volume, 0, 10, 0, 1)))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("SFX"), linear2db(range_lerp(sfx_volume, 0, 10, 0, 1)))
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), linear2db(range_lerp(music_volume, 0, 10, 0, 1)))
+
 func reset_essentials():
-	Globals.time_limit = 300
-	Globals.counter_time = 3
-	Globals.is_counting_down = true
+	time_limit = 300
+	counter_time = 3
+	is_counting_down = true
+	stop_engines = false
 	
-	Globals.score["red"] = 0
-	Globals.score["blue"] = 0
+	score["red"] = 0
+	score["blue"] = 0
+	
+func save_preferences():
+	pass
+	
+func load_preferences():
+	pass

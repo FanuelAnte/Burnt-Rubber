@@ -22,7 +22,6 @@ func _process(delta):
 	else:
 		car_sprites.frame = car_index
 		
-		
 	car_name_lbl.text = Globals.car_resources[car_index].car_name
 	
 func _on_PreviousCarBtn_pressed():

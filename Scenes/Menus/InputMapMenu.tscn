@@ -1,9 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Themes/PrimaryTheme.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/Menus/InputRemapper.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Menus/RemapPrompt.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/InputMapMenu.gd" type="Script" id=4]
+
+[sub_resource type="InputEventAction" id=1]
+action = "pause"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [node name="InputMapMenu" type="Control"]
 anchor_right = 1.0
@@ -20,18 +26,18 @@ color = Color( 0, 0, 0, 1 )
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 8.0
+margin_left = 24.0
 margin_top = 60.0
-margin_right = -8.0
+margin_right = -24.0
 margin_bottom = -60.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 120.0
 custom_constants/separation = 16
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 6.0
 custom_constants/shadow_offset_x = 0
 custom_constants/shadow_offset_y = 1
@@ -41,48 +47,49 @@ valign = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 22.0
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 98.0
 custom_constants/separation = 8
 alignment = 1
 
 [node name="InputRemapper" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
 unique_name_in_owner = true
-margin_right = 240.0
+margin_right = 208.0
 
 [node name="InputRemapper2" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 14.0
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 20.0
 
 [node name="InputRemapper3" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 28.0
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 34.0
 
 [node name="InputRemapper4" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 42.0
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 48.0
 
 [node name="InputRemapper5" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 56.0
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 62.0
 
 [node name="InputRemapper6" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
 margin_top = 70.0
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 76.0
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 margin_top = 114.0
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 120.0
 
 [node name="BackBtn" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer2"]
-margin_right = 240.0
+margin_right = 208.0
 margin_bottom = 6.0
+shortcut = SubResource( 2 )
 text = "Back"
 
 [node name="RemapPrompt" parent="." instance=ExtResource( 3 )]
