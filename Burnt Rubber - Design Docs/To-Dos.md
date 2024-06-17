@@ -15,6 +15,7 @@
 	- [x] Pick team
 	- [x] Pick Car
 - [ ] SFX and Music
+	- [ ] Music
 	- [ ] SFX
 		- [ ] Ball
 			- [x] hit

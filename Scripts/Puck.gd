@@ -43,6 +43,7 @@ func reset_everything():
 	
 func _on_Area2D_area_entered(area):
 	if area.is_in_group("goal"):
+		object_audio_component.play_goal()
 		if area.team_color == "red":
 			hud.play_goal(Color("28669a"))
 			Globals.score["blue"] += 1
