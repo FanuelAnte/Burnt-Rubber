@@ -27,3 +27,6 @@ func _on_SettingsBtn_pressed():
 	Globals.settings_menu_parent = "main"
 	get_tree().change_scene("res://Scenes/Menus/SettingsMenu.tscn")
 	
+func _on_HowToPlayBtn_pressed():
+	InterfaceAudioComponent.play_accept()
+	get_tree().change_scene("res://Scenes/Menus/HowToPlayScreen.tscn")

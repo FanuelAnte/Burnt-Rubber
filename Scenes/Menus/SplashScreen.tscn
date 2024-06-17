@@ -45,7 +45,7 @@ script = ExtResource( 3 )
 [node name="Background" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color( 0.223529, 0.266667, 0.317647, 1 )
+color = Color( 0, 0, 0, 1 )
 
 [node name="IntroSplash" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -58,31 +58,33 @@ custom_constants/separation = 8
 alignment = 1
 
 [node name="Label" type="Label" parent="IntroSplash/VBoxContainer"]
-margin_top = 74.0
+margin_top = 67.0
 margin_right = 256.0
-margin_bottom = 80.0
-custom_colors/font_color_shadow = Color( 0.184314, 0.117647, 0.270588, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 1
+margin_bottom = 73.0
 text = "Made With"
 align = 1
 valign = 1
 
 [node name="TextureRect" type="TextureRect" parent="IntroSplash/VBoxContainer"]
-margin_top = 88.0
+margin_top = 81.0
 margin_right = 256.0
-margin_bottom = 152.0
+margin_bottom = 145.0
 texture = ExtResource( 1 )
 stretch_mode = 4
 
 [node name="Label2" type="Label" parent="IntroSplash/VBoxContainer"]
-margin_top = 160.0
+margin_top = 153.0
 margin_right = 256.0
-margin_bottom = 166.0
-custom_colors/font_color_shadow = Color( 0.184314, 0.117647, 0.270588, 1 )
-custom_constants/shadow_offset_x = 0
-custom_constants/shadow_offset_y = 1
+margin_bottom = 159.0
 text = "By Fanuel Anteneh"
+align = 1
+valign = 1
+
+[node name="Label3" type="Label" parent="IntroSplash/VBoxContainer"]
+margin_top = 167.0
+margin_right = 256.0
+margin_bottom = 173.0
+text = "FOr the 2024 NES Jam"
 align = 1
 valign = 1
 

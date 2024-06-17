@@ -27,7 +27,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Puck Off"
-run/main_scene="res://Scenes/Menus/MainMenu.tscn"
+run/main_scene="res://Scenes/Menus/SplashScreen.tscn"
 boot_splash/show_image=false
 boot_splash/bg_color=Color( 0, 0, 0, 1 )
 config/icon="res://icon.png"
@@ -40,14 +40,13 @@ MusicComponent="*res://Scenes/Components/MusicComponent.tscn"
 
 [debug]
 
-settings/fps/force_fps=59
+settings/fps/force_fps=60
 
 [display]
 
 window/size/width=256
 window/size/height=240
-window/size/test_width=512
-window/size/test_height=480
+window/size/fullscreen=true
 window/dpi/allow_hidpi=true
 window/stretch/mode="viewport"
 window/stretch/aspect="keep"

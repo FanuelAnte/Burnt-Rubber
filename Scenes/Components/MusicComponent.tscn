@@ -1,3 +1,50 @@
-[gd_scene format=2]
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Audio/Music/Bass.wav" type="AudioStream" id=1]
+[ext_resource path="res://Assets/Audio/Music/Lead2.wav" type="AudioStream" id=2]
+[ext_resource path="res://Scripts/MusicComponent.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Audio/Music/Lead1.wav" type="AudioStream" id=4]
+[ext_resource path="res://Assets/Audio/Music/Drums.wav" type="AudioStream" id=13]
 
 [node name="MusicComponent" type="Node2D"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="Lead1" type="Node2D" parent="."]
+
+[node name="Lead1" type="AudioStreamPlayer" parent="Lead1" groups=["audio_players"]]
+unique_name_in_owner = true
+stream = ExtResource( 4 )
+volume_db = -15.0
+bus = "Music"
+
+[node name="Lead2" type="Node2D" parent="."]
+
+[node name="Lead2" type="AudioStreamPlayer" parent="Lead2" groups=["audio_players"]]
+unique_name_in_owner = true
+stream = ExtResource( 2 )
+volume_db = -15.0
+bus = "Music"
+
+[node name="Bass" type="Node2D" parent="."]
+
+[node name="Bass" type="AudioStreamPlayer" parent="Bass" groups=["audio_players"]]
+unique_name_in_owner = true
+stream = ExtResource( 1 )
+volume_db = -15.0
+bus = "Music"
+
+[node name="Drums" type="Node2D" parent="."]
+
+[node name="Drums" type="AudioStreamPlayer" parent="Drums" groups=["audio_players"]]
+unique_name_in_owner = true
+stream = ExtResource( 13 )
+volume_db = -15.0
+bus = "Music"
+
+[node name="Metronome" type="Timer" parent="."]
+unique_name_in_owner = true
+process_mode = 0
+autostart = true
+
+[connection signal="timeout" from="Metronome" to="." method="_on_Metronome_timeout"]

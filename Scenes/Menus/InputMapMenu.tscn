@@ -5,11 +5,11 @@
 [ext_resource path="res://Scenes/Menus/RemapPrompt.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scripts/InputMapMenu.gd" type="Script" id=4]
 
-[sub_resource type="InputEventAction" id=1]
+[sub_resource type="InputEventAction" id=3]
 action = "pause"
 
 [sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
+shortcut = SubResource( 3 )
 
 [node name="InputMapMenu" type="Control"]
 anchor_right = 1.0

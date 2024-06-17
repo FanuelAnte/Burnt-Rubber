@@ -67,6 +67,7 @@ func _on_StartBtn_pressed():
 	Globals.match_settings["car_resource"] = car
 	Globals.match_duration = int((match_duration) * 60)
 	Globals.time_limit = Globals.match_duration
+	MusicComponent.game_is_active = true
 	get_tree().change_scene("res://Scenes/BaseGame.tscn")
 
 func _on_BackButton_pressed():
@@ -75,7 +76,7 @@ func _on_BackButton_pressed():
 
 func _on_IncDuration_pressed():
 	InterfaceAudioComponent.play_accept()
-	if match_duration < 15:
+	if match_duration < 5:
 		match_duration += 1
 
 func _on_DecDuration_pressed():

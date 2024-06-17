@@ -15,11 +15,11 @@
 	- [x] Pick team
 	- [x] Pick Car
 - [ ] SFX and Music
-	- [ ] Music
+	- [x] Music
 	- [ ] SFX
 		- [ ] Ball
 			- [x] hit
-			- [ ] goal (buzzer)
+			- [x] goal (buzzer)
 		- [ ] Cars
 			- [x] hit
 			- [ ] engine

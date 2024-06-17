@@ -1,0 +1,117 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Themes/PrimaryTheme.tres" type="Theme" id=1]
+[ext_resource path="res://Scripts/HowToPlayScreen.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Exports/HowToPlayText.png" type="Texture" id=3]
+
+[sub_resource type="InputEventAction" id=1]
+action = "pause"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[node name="HowToPlayScreen" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Body" type="MarginContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 16.0
+margin_top = 16.0
+margin_right = -16.0
+margin_bottom = -16.0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Body"]
+margin_right = 224.0
+margin_bottom = 208.0
+custom_constants/separation = 32
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Body/VBoxContainer2"]
+visible = false
+margin_top = 12.0
+margin_right = 224.0
+margin_bottom = 157.0
+custom_constants/separation = 11
+alignment = 1
+
+[node name="Label5" type="Label" parent="Body/VBoxContainer2/VBoxContainer"]
+margin_right = 224.0
+margin_bottom = 15.0
+text = "The Objective of the gane is to put the puck into the opponent's goal."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Label" type="Label" parent="Body/VBoxContainer2/VBoxContainer"]
+margin_top = 26.0
+margin_right = 224.0
+margin_bottom = 41.0
+text = "move forward with the Z key and Reverse with the X Key."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Label3" type="Label" parent="Body/VBoxContainer2/VBoxContainer"]
+margin_top = 52.0
+margin_right = 224.0
+margin_bottom = 76.0
+text = "Press up to gain a short burst of speed. This is on a 1 second cooldown after use."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Label2" type="Label" parent="Body/VBoxContainer2/VBoxContainer"]
+margin_top = 87.0
+margin_right = 224.0
+margin_bottom = 93.0
+text = "Use the arrow Keys to steer."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Label4" type="Label" parent="Body/VBoxContainer2/VBoxContainer"]
+margin_top = 104.0
+margin_right = 224.0
+margin_bottom = 119.0
+text = "Press and Hold down to drift and make sharp turns."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="Label6" type="Label" parent="Body/VBoxContainer2/VBoxContainer"]
+margin_top = 130.0
+margin_right = 224.0
+margin_bottom = 145.0
+text = "Feel Free to go to the Input map and remap the controls."
+align = 1
+valign = 1
+autowrap = true
+
+[node name="TextureRect" type="TextureRect" parent="Body/VBoxContainer2"]
+margin_top = 13.0
+margin_right = 224.0
+margin_bottom = 157.0
+texture = ExtResource( 3 )
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Body/VBoxContainer2"]
+margin_top = 189.0
+margin_right = 224.0
+margin_bottom = 195.0
+
+[node name="BackBtn" type="Button" parent="Body/VBoxContainer2/VBoxContainer2"]
+unique_name_in_owner = true
+margin_right = 224.0
+margin_bottom = 6.0
+shortcut = SubResource( 2 )
+text = "Back"
+
+[connection signal="pressed" from="Body/VBoxContainer2/VBoxContainer2/BackBtn" to="." method="_on_BackBtn_pressed"]

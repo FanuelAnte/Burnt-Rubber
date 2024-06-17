@@ -52,6 +52,7 @@ func _on_ResumeBtn_pressed():
 	
 func _on_EndMatchBtn_pressed():
 	resume()
+	MusicComponent.game_is_active = false
 	get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
 	Globals.reset_essentials()
 	

@@ -11,11 +11,14 @@ onready var dec_music_vol_btn = $"%DecMusicVolBtn"
 onready var music_vol_lbl = $"%MusicVolLbl"
 onready var inc_music_vol_btn = $"%IncMusicVolBtn"
 onready var back_button = $"%BackButton"
+onready var fullscreen = $"%Fullscreen"
 
 func _ready():
 	dec_master_vol_btn.grab_focus()
 	
 func _process(delta):
+	fullscreen.pressed = Globals.is_fullscreen
+	
 	if self.is_visible_in_tree():
 		if Input.is_action_just_pressed("ui_up") or Input.is_action_just_pressed("ui_down") or Input.is_action_just_pressed("ui_right") or Input.is_action_just_pressed("ui_left"):
 			InterfaceAudioComponent.play_navigate()
@@ -80,3 +83,15 @@ func _on_IncMusicVolBtn_pressed():
 		Globals.music_volume += 1
 		
 	Globals.save_settings()
+	
+func _on_Fullscreen_toggled(button_pressed):
+	Globals.is_fullscreen = button_pressed
+	
+	OS.set_window_fullscreen(button_pressed)
+	
+	if button_pressed == false:
+		var size = get_viewport().get_size()
+		OS.set_window_size(size)
+		OS.center_window()
+	
+	

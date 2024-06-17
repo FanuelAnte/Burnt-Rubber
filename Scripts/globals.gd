@@ -58,6 +58,8 @@ var field_extents = {
 	"y" : 576
 }
 
+var is_fullscreen = true
+
 #make this multiplayer friendly
 var player_speed = 0
 

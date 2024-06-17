@@ -21,6 +21,7 @@ func _on_RematchBtn_pressed():
 	get_tree().change_scene("res://Scenes/BaseGame.tscn")
 	
 func _on_MainMenuBtn_pressed():
+	MusicComponent.game_is_active = false
 	InterfaceAudioComponent.play_accept()
 	Globals.reset_essentials()
 	get_tree().change_scene("res://Scenes/Menus/MainMenu.tscn")
